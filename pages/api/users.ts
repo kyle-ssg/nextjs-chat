@@ -1,6 +1,6 @@
 // Import Dependencies
 import url from 'url'
-import {connect, getCollection} from '../../server/connect'
+import {getCollection} from '../../server/connect'
 // Create cached connection variable
 
 
