@@ -1,0 +1,135 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+// Adding fonts
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Regular.ttf') format('ttf'),
+  url('/fonts/OpenSans-Regular.woff2') format('woff2'),
+  url('/fonts/OpenSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Regular.woff2') format('woff2'),
+  url('/fonts/OpenSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Light.woff2') format('woff2'),
+  url('/fonts/OpenSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Light.ttf') format('ttf'),
+  url('/fonts/OpenSans-Light.woff2') format('woff2'),
+  url('/fonts/OpenSans-Light.woff') format('woff');
+  font-weight: 100;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Light.ttf') format('ttf'),
+  url('/fonts/OpenSans-Light.woff2') format('woff2'),
+  url('/fonts/OpenSans-Light.woff') format('woff');
+  font-weight: 200;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Light.ttf') format('ttf'),
+  url('/fonts/OpenSans-Light.woff2') format('woff2'),
+  url('/fonts/OpenSans-Light.woff') format('woff');
+  font-weight:bold;
+  font-display:swap;
+}
+
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Bold.ttf') format('ttf'),
+  url('/fonts/OpenSans-Bold.woff2') format('woff2'),
+  url('/fonts/OpenSans-Bold.woff') format('woff');
+  font-weight:bold;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-SemiBold.ttf') format('ttf'),
+  url('/fonts/OpenSans-SemiBold.woff2') format('woff2'),
+  url('/fonts/OpenSans-SemiBold.woff') format('woff');
+  font-weight:500;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: local('OpenSans'),
+  url('/fonts/OpenSans-Bold.ttf') format('ttf'),
+  url('/fonts/OpenSans-Bold.woff2') format('woff2'),
+  url('/fonts/OpenSans-Bold.woff') format('woff');
+  font-weight:600;
+  font-display:swap;
+}
+
+//Scaffolding
+$breakpoints: (
+    mobile-small: 320px,
+    mobile: 375px,
+    handheld-device: 576px,
+    tablet: 768px,
+    tablet-large: 992px,
+    desktop: 1200px
+);
+
+
+
+$border-radius-large: 24px;
+$border-radius: 10px;
+$border-radius-small: 4px;
+
+
+$sidebar-width: 5px;
+$sidemenu-width: 80px*3;
+
+
+$body-bg: #d3d3d9;
+$shadow-color: rgb(214 214 214 / 20%);
+$body-bg-inner: #fff;
+$brand-primary: #4749a0;
+$text-light: #999;
+$sidebar-background: $brand-primary;
+$sidemenu-background: #f1f3f4;
+$label-color: #737f8c;
+$label-background-active: $brand-primary;
+$label-color-active: #fff;
+$title-color: $brand-primary;
+
+$brand-primary-dark: lighten($brand-primary, 20);
+$sidebar-background-dark: $brand-primary;
+$body-bg-dark: #1f2224;
+$body-bg-inner-dark: #35393e;
+$sidemenu-background-dark: #2e3135;
+$title-color-dark: lighten($brand-primary, 20);
+$label-color-dark: #999;
+$label-color-active-dark: #f1f1f1;
+$shadow-color-dark: rgb(0 0 0 / 20%);

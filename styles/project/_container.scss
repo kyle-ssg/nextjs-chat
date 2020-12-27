@@ -1,0 +1,121 @@
+@import "../variables";
+
+html, body, #__next {
+  height: 100%;
+  width: 100%;
+  background-color: $body-bg;
+  overflow: hidden;
+  font-family: OpenSans, serif;
+  @include darkMode()
+}
+
+body.dark, body.dark #__next {
+    background-color: $body-bg-dark;
+}
+
+body.dark .page-container {
+  background-color: $body-bg-inner-dark;
+  box-shadow: $shadow-color-dark -1px 11px 20px 15px;
+  &__sidebar {
+    background-color: $sidebar-background-dark;
+  }
+  &__side-menu {
+    overflow-y: auto;
+    label {
+      color: $title-color-dark;
+    }
+    background-color: $sidemenu-background-dark;
+    .room-name {
+      color: $label-color-dark;
+      svg path {
+        fill: $label-color-dark;
+      }
+      &--active {
+        color: $label-color-active-dark;
+        svg path {
+          fill: $label-color-active-dark !important;
+        }
+      }
+    }
+  }
+}
+
+.page-container {
+  @include darkMode();
+  background-color: $body-bg-inner;
+  height: calc(100% - 48px);
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 24px;
+  box-shadow: $shadow-color -1px 11px 20px 15px;;
+  border-radius: $border-radius-large;
+  display: flex;
+  flex-direction: row;
+
+  &__sidebar {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $sidebar-width;
+    border-radius: $border-radius-large;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $sidebar-background;
+    align-items: center;
+  }
+
+  &__main {
+
+  }
+
+  &__side-menu {
+    width: $sidemenu-width;
+    background: $sidemenu-background;
+    padding: 16px 0 16px 16px;
+
+    .room-name {
+      font-weight: 500;
+      color: $label-color;
+      cursor: pointer;
+      line-height: 18px;
+      padding: 8px;
+      border-radius: $border-radius-small 0 0 $border-radius-small;
+
+      .icon-container {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+
+        svg {
+          height: 17px;
+          width: 18px;
+
+          path {
+            fill: $label-color;
+          }
+        }
+      }
+
+      &--active {
+        background-color: $label-background-active;
+        color: $label-color-active;
+
+        svg path {
+          fill: $label-color-active !important;
+        }
+      }
+    }
+
+    label {
+      text-transform: uppercase;
+      color: $title-color;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+  }
+}
