@@ -7,7 +7,7 @@ import {DEFAULT_AVATAR} from "../common/constants"; // we need this to make JSX 
 
 type ComponentType = {}
 
-const SidebarContainer: FunctionComponent<ComponentType> = ({}) => {
+const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
     const {user,logout, uploadImage} = useAuth();
     const [showLogin, setShowLogin] = useState<boolean>(false)
     const submit = ()=> {
@@ -27,6 +27,9 @@ const SidebarContainer: FunctionComponent<ComponentType> = ({}) => {
                     </div>
                 ): (
                     <div className="text-center mb-2">
+                        <div>
+                            You are not logged in
+                        </div>
                         <button onClick={()=>setShowLogin(true)} className="btn btn-primary">
                             Login / Register
                         </button>
@@ -39,4 +42,4 @@ const SidebarContainer: FunctionComponent<ComponentType> = ({}) => {
     )
 }
 
-export default SidebarContainer
+export default RightSidebarContainer

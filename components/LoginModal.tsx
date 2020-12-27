@@ -2,23 +2,7 @@ import React, {FunctionComponent} from "react";
 import Login from "./Login"; // we need this to make JSX compile
 import Modal from "react-modal";
 
-const customStyles = {
-    overlay: {
-        backgroundColor: typeof document !== 'undefined' && document.body.classList.contains("dark")?  "rgba(0,0,0,0.36)" : "#c4c4ce5c"
-    },
-    content : {
-        backgroundColor: typeof document !== 'undefined' && document.body.classList.contains("dark")?  "rgba(39,39,41,0.36)" : "#35393e",
 
-        border: 'none',
-        minWidth:"400px",
-        top                   : '25%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
-    }
-};
 type ComponentType = {
     visible:boolean,
     setVisible: (value:boolean)=>void,
@@ -30,7 +14,26 @@ const LoginModal: FunctionComponent<ComponentType> = ({
     setVisible,
     onComplete
                                                         }) => {
-    return (
+
+    const customStyles = typeof document === 'undefined' ? {}: {
+        overlay: {
+            backgroundColor: document.body.classList.contains("dark")?  "rgba(0,0,0,0.36)" : "#c4c4ce5c"
+        },
+        content : {
+            backgroundColor: document.body.classList.contains("dark")?  "rgba(39,39,41,0.36)" : "#ffffff",
+            border: 'none',
+            minWidth:"400px",
+            borderRadius:20,
+            top                   : '25%',
+            left                  : '50%',
+            right                 : 'auto',
+            bottom                : 'auto',
+            marginRight           : '-50%',
+            transform             : 'translate(-50%, -50%)'
+        }
+    };
+
+    return  typeof document === 'undefined'? null:(
         <Modal
             appElement={document.getElementById("__next")}
             style={customStyles}

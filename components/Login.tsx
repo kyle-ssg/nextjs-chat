@@ -11,7 +11,7 @@ const Login: FunctionComponent<ComponentType> = ({onComplete}) => {
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const {isLoading,error,login,register} = useAuth();
-    const [mode, setMode] = useState<string>("REGISTER")
+    const [mode, setMode] = useState<string>("LOGIN")
     const submit = ()=> {
         if(mode === "REGISTER") {
             register(username,password)

@@ -18,3 +18,15 @@ p{
 .bold-link{
     font-weight:bold!important;
 }
+body {
+    color: $body-color;
+    h1,h2,h3,h4,h5 {
+        color: $body-color;
+    }
+}
+body.dark {
+    color: $body-color-dark;
+    h1,h2,h3,h4,h5 {
+        color: $body-color-dark;
+    }
+}
