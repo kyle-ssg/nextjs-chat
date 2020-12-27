@@ -4,6 +4,7 @@ import RoomList from "components/RoomList";
 import useData from "common/useData";
 import Input from "components/Input";
 import ChatContainer from "components/ChatContainer";
+import SidebarContainer from "../components/SidebarContainer";
 const TIMER = 5000;
 
 export default function Home() {
@@ -29,6 +30,9 @@ export default function Home() {
         <div className="page-container__main">
             <ChatContainer room={room}/>
             <Input onSubmit={sendMessage}/>
+        </div>
+        <div className="page-container__right-menu">
+            <SidebarContainer/>
         </div>
     </div>
   )

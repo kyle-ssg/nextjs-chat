@@ -13,40 +13,6 @@ body.dark, body.dark #__next {
     background-color: $body-bg-dark;
 }
 
-body.dark .page-container {
-  background-color: $body-bg-inner-dark;
-  box-shadow: $shadow-color-dark -1px 11px 20px 15px;
-  &__sidebar {
-    background-color: $sidebar-background-dark;
-  }
-  &__side-menu {
-    overflow-y: auto;
-    label {
-      color: $title-color-dark;
-    }
-    background-color: $sidemenu-background-dark;
-    .room-name {
-      color: $label-color-dark;
-      svg path {
-        fill: $label-color-dark;
-      }
-      &--active {
-        color: $label-color-active-dark;
-        svg path {
-          fill: $label-color-active-dark !important;
-        }
-      }
-    }
-  }
-  &__main {
-    .input-container {
-      background-color: $input-background-dark;
-      input {
-        color: $label-color-dark;
-      }
-    }
-  }
-}
 $margin:0px;
 $radius: 0;
 .page-container {
@@ -103,10 +69,18 @@ $radius: 0;
     }
   }
 
+  &__right-menu {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: $sidemenu-width;
+    background: $sidemenu-background;
+  }
   &__side-menu {
     width: $sidemenu-width;
     background: $sidemenu-background;
     padding: 16px 0 16px 16px;
+    overflow-y: auto;
 
     .room-name {
       @include darkMode();
@@ -153,5 +127,43 @@ $radius: 0;
       letter-spacing: 2px;
     }
 
+  }
+}
+
+
+body.dark .page-container {
+  background-color: $body-bg-inner-dark;
+  box-shadow: $shadow-color-dark -1px 11px 20px 15px;
+  &__sidebar {
+    background-color: $sidebar-background-dark;
+  }
+  &__right-menu {
+    background-color: $sidemenu-background-dark;
+  }
+  &__side-menu {
+    label {
+      color: $title-color-dark;
+    }
+    background-color: $sidemenu-background-dark;
+    .room-name {
+      color: $label-color-dark;
+      svg path {
+        fill: $label-color-dark;
+      }
+      &--active {
+        color: $label-color-active-dark;
+        svg path {
+          fill: $label-color-active-dark !important;
+        }
+      }
+    }
+  }
+  &__main {
+    .input-container {
+      background-color: $input-background-dark;
+      input {
+        color: $label-color-dark;
+      }
+    }
   }
 }

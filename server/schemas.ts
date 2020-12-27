@@ -12,7 +12,10 @@ const UserSchema = new Schema({
     bio: String,
     role: {type:String, default:"USER"},
     createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
     avatar: String
+}, {
+    timestamps: true
 });
 UserSchema.plugin(passportLocalMongoose)
 // @ts-ignore

@@ -4,6 +4,7 @@ export interface IUserBase {
     avatar: string,
     bio: string,
     createdAt?: string,
+    updatedAt?: string,
     token?: string,
     role: string
     username: string,

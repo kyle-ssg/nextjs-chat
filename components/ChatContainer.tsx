@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from "react";
+import React, {FunctionComponent, useEffect, useRef} from "react";
 import {useGlobalState} from "common/state";
 import {DEFAULT_AVATAR} from "common/constants";
 import {IMessage} from "models"; // we need this to make JSX compile
@@ -50,13 +50,33 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
     const state = useGlobalState().get();
     const messages = state.messages[room] || []
     const yourName = state.user?.username;
-    return (
-        <div className="messages">
+    const scrolled = useRef(false);
+    const ref = useRef();
+    useEffect(()=>{
+        if(messages.length) {
+            const div = ref.current;
+            if (div){
+                // @ts-ignore
+                const height = div.scrollHeight-div.clientHeight;
+                // @ts-ignore
+                const top = div.scrollTop;
+                if (height-top < 300 || !scrolled.current) {
+                    scrolled.current = true;
+                    // @ts-ignore
+                    div.scrollTop = div.scrollHeight;
+                }
+                console.log(height,top)
+            }
+        }
+    },[messages.length,room])
+    return typeof window ==='undefined'? <div className="messages"></div>: (
+        <div ref={ref} className="messages">
             {messages.map((message) => (
                <Message key={message._id} yourName={yourName} message={message}/>
             ))}
         </div>
     )
 }
+
 
 export default ChatContainer

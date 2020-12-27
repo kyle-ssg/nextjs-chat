@@ -34,6 +34,14 @@ const useAuth = ()=>{
                 })
         }
     }
+    const logout = async ()=> {
+        _data.setToken("");
+        state.set((state)=>{
+            state.user = null
+            return state;
+        });
+        await AsyncStorage.removeItem("user")
+    }
     const login = (username:string,password:string)=> {
         if (isLoading) {
             return
@@ -60,7 +68,7 @@ const useAuth = ()=>{
         }
     }
 
-    return {login,register,error,isLoading}
+    return {login,register,error,isLoading, logout, user: state.get().user}
 }
 
 

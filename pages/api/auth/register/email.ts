@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {parseUser, User} from "server/schemas";
-import "server/auth';
+import 'server/auth';
 
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
