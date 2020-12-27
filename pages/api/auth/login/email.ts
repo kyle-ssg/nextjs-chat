@@ -19,5 +19,4 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
     } catch (e) {
         res.status(403).json({message:"Please check your username and password"})
     }
-
 }
