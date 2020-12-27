@@ -20,7 +20,7 @@ $size: 50px;
     padding: 8px 16px;
     margin-left: 8px;
     border-radius: $border-radius;
-    box-shadow: $shadow-color-alt 0px 3px 10px 2px;
+    box-shadow: $shadow-color-alt 0px 3px 6px 2px;
   }
   padding: 8px;
 }
@@ -31,7 +31,7 @@ body.dark {
       color: $body-color-dark;
     }
     &__content {
-      box-shadow: $shadow-color-dark 0px 3px 10px 2px;
+      box-shadow: $shadow-color-dark 0px 3px 6px 2px;
     }
     &__author{
       color: $title-color-dark;

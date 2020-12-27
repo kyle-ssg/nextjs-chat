@@ -8,7 +8,7 @@ import {DEFAULT_AVATAR} from "../common/constants"; // we need this to make JSX 
 type ComponentType = {}
 
 const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
-    const {user,logout, uploadImage} = useAuth();
+    const {user,logout, uploadImage, isLoading} = useAuth();
     const [showLogin, setShowLogin] = useState<boolean>(false)
     const submit = ()=> {
 
@@ -20,7 +20,7 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
             <div className="panel">
                 {user? (
                     <div className="text-center mb-2">
-                        <Avatar onChange={uploadImage} src={user.avatar||DEFAULT_AVATAR}/>
+                        <Avatar isLoading={isLoading} onChange={uploadImage} src={user.avatar||DEFAULT_AVATAR}/>
                         <button onClick={logout} className="btn btn-primary">
                             Logout
                         </button>
