@@ -27,7 +27,7 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
     const messages = state.messages[room] || []
     const yourName = state.user?.username;
     return (
-        <>te
+        <>
             {messages.map((message)=>(
                 <div key={message._id} className={cx({you:yourName===message.name},"flex-row message")}>
                     <div className="text-center">
