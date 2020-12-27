@@ -39,6 +39,8 @@ export function parseUser(user:IUser, withToken?:boolean) {
 export const Message = global.Message = global.Message || mongoose.model<IMessage>("message", new Schema({
     text: String,
     name: String,
+    channel: {type: String, required:true},
+    username: {type: String, required:true},
     avatar: String,
     createdAt: { type: Date, default: Date.now },
     messageType: { type: String, default: "TEXT" },

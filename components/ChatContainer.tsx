@@ -20,9 +20,9 @@ export const Message: FunctionComponent<MessageContentType> = ({message,yourName
             </div>
             <div className="ml-2">
                 <div className="message__content">
-                    {message.name !== yourName && (
+                    {message.username !== yourName && (
                         <div className="message__author">
-                            {message.name}
+                            {message.username}
                         </div>
                     )}
                     <MessageContent message={message}/>

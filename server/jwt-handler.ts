@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import {IUserBase} from "../models";
 const secret = process.env.JWT_SECRET;
 
 export function signToken(data) {
@@ -6,5 +7,7 @@ export function signToken(data) {
 }
 
 export async function verify(token) {
-    return jwt.verify(token, secret);
+    // @ts-ignore
+    const data:IUserBase = jwt.verify(token, secret);
+    return data
 }

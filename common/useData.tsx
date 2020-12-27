@@ -25,11 +25,11 @@ export default function useData(): IChat {
         if (text) {
             const currentChannel = `${channel.current}`
             const data: Partial<IMessage> = {
-                name: "Kyle",
-                avatar: "https://www.w3schools.com/howto/img_avatar.png",
                 text: message
             }
-            await _data.post(`${Project.api}${currentChannel}/send`, data);
+            await _data.post(`${Project.api}messages/${currentChannel}/send`, data).then(()=>{
+                getMessages()
+            })
         }
 
     }
@@ -40,7 +40,7 @@ export default function useData(): IChat {
         _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
                 state.set((draft)=>{
-                    draft.messages[currentChannel] = messages.data.concat(draft.messages[currentChannel] || [])
+                    draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
                     return draft
                 })
             })
