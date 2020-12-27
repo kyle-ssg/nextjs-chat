@@ -3,6 +3,7 @@ import React, {FunctionComponent, useEffect} from "react";
 import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
 import cx from "classname";
+import Project from "../common/project";
 type ComponentType = {
     setRoom:(name:string)=>void
     room: string
@@ -41,22 +42,13 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
                 <label>
                     Chat
                 </label>
-                <RoomName currentRoom={room} name="general" icon={<HashtagIcon/>} onChange={setRoom}/>
-                <RoomName currentRoom={room} name="memes" icon={<HashtagIcon/>} onChange={setRoom}/>
-                <RoomName currentRoom={room} name="random" icon={<HashtagIcon/>} onChange={setRoom}/>
+                {Project.chatRooms.map((name)=>(<RoomName currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
                 <label>
                     Voice
                 </label>
-                <RoomName voice currentRoom={room} name="general" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="music" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="breakout 1" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="breakout 2" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="breakout 3" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="breakout 4" icon={<MicIcon/>} onChange={setRoom}/>
-                <RoomName voice currentRoom={room} name="breakout 5" icon={<MicIcon/>} onChange={setRoom}/>
-
+                {Project.voiceRooms.map((name)=>(<RoomName voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
             <label>
