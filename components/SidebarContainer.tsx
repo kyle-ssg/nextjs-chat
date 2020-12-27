@@ -1,12 +1,14 @@
 import React, {FunctionComponent, useState} from 'react';
 import {useGlobalState} from "../common/state";
 import useAuth from "../common/useAuth";
-import LoginModal from "./LoginModal"; // we need this to make JSX compile
+import LoginModal from "./LoginModal";
+import Avatar from "./Avatar";
+import {DEFAULT_AVATAR} from "../common/constants"; // we need this to make JSX compile
 
 type ComponentType = {}
 
 const SidebarContainer: FunctionComponent<ComponentType> = ({}) => {
-    const {user,logout} = useAuth();
+    const {user,logout, uploadImage} = useAuth();
     const [showLogin, setShowLogin] = useState<boolean>(false)
     const submit = ()=> {
 
@@ -18,6 +20,7 @@ const SidebarContainer: FunctionComponent<ComponentType> = ({}) => {
             <div className="panel">
                 {user? (
                     <div className="text-center mb-2">
+                        <Avatar onChange={uploadImage} src={user.avatar||DEFAULT_AVATAR}/>
                         <button onClick={logout} className="btn btn-primary">
                             Logout
                         </button>

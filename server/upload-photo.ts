@@ -1,7 +1,7 @@
 import {storage} from "./gcp";
 import stream from "stream";
 import Project from "common/project";
-export default async function uploadPhoto(prefix:string,base64:string) {
+export default async function uploadPhoto(prefix:string,base64:string):Promise<string> {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(Buffer.from(base64, 'base64'));
     const myBucket = storage.bucket("nextjschat");
@@ -18,7 +18,7 @@ export default async function uploadPhoto(prefix:string,base64:string) {
                 reject(err)
             })
             .on('finish', function(v) {
-                resolve(`${Project.storage}${prefix}.jpg`);
+                resolve(`${Project.storage}${prefix}.jpg?t=${Date.now().valueOf()}`);
             });
     })
 

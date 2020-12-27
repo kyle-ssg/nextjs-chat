@@ -1,6 +1,8 @@
 import AsyncStorage from "@callstack/async-storage";
 import React, {useState, useEffect} from "react"
 import '../styles/index.scss'
+import 'react-image-crop/lib/ReactCrop.scss';
+
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
 

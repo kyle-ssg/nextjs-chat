@@ -22,7 +22,9 @@ UserSchema.plugin(passportLocalMongoose)
 export const User:PassportLocalModel<IUser> = global.User = global.User || mongoose.model<IUser>("user", UserSchema);
 
 export function parseUser(user:IUser, withToken?:boolean) {
+    console.log("parsing user", user)
     const dto = {
+        _id: user._id,
         username: user.username,
         role: user.role,
         createdAt: user.createdAt,

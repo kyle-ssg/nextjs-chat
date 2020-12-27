@@ -22,6 +22,7 @@
     "passport-local-mongoose": "^6.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-image-crop": "^8.6.6",
     "react-modal": "^3.12.1",
     "sass": "^1.30.0"
   },
@@ -31,6 +32,7 @@
     "@types/passport": "^1.0.4",
     "@types/passport-local-mongoose": "^4.0.13",
     "@types/react": "^17.0.0",
+    "@types/react-image-crop": "^8.1.2",
     "typescript": "^4.1.3"
   }
 }

@@ -9,6 +9,23 @@ const useAuth = ()=>{
     const state = useGlobalState()
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>("")
+    const uploadImage = (data:string)=> {
+        if(!isLoading){
+            setIsLoading(true)
+            return _data.post(`${Project.api}upload/image`,  {data})
+                .then((res)=>{
+                    _data.setToken(res.token);
+                    state.set((state)=>{
+                        state.user = res
+                        return state;
+                    });
+                    setIsLoading(false);
+                })
+                .catch((e)=>{
+                    setError(e?.message || e || "Could not upload image");
+                })
+        }
+    }
     const register = (username:string,password:string)=> {
         if (isLoading) {
             return
@@ -68,7 +85,7 @@ const useAuth = ()=>{
         }
     }
 
-    return {login,register,error,isLoading, logout, user: state.get().user}
+    return {login,register,error,isLoading, logout, uploadImage, user: state.get().user}
 }
 
 
