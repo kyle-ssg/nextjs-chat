@@ -42,7 +42,9 @@ export default function useData(): IChat {
             .then((messages: PagedResponse<IMessage>) => {
                 state.set((draft)=>{
                     draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
-                    draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
+                    if (draft.messages[currentChannel].length > MAX_MESSAGES) {
+                        draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
+                    }
                     return draft
                 })
             })
