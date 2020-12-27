@@ -1,0 +1,21 @@
+.ReactModal__Overlay {
+  @include darkMode();
+  opacity: 0;
+  &--after-open{
+    opacity: 1;
+  }
+  &--before-close{
+    opacity: 0;
+  }
+  .ReactModal__Content {
+    box-shadow: $shadow-color-alt 0px 0px 20px 7px;
+  }
+}
+
+body.ReactModal__Body--open .page-container {
+  filter: blur(4px);
+}
+
+body.ReactModal__Body--before-close .page-container {
+  filter: blur(0px);
+}

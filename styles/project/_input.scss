@@ -1,0 +1,14 @@
+.input-container-default {
+  background-color: $input-background;
+  height: 44px;
+  border-radius: $border-radius;
+  input {
+    height: 100%;
+    width: 100%;
+    text-indent: 8px;
+    background-color: transparent;
+    border: none;
+    outline: none !important;
+    color: $label-color;
+  }
+}

@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {IMessage, PagedResponse} from "../models";
 import _data from "./_data";
 import {useGlobalState} from "./state";
+import Project from "./project";
 
 
 type IChat = {
@@ -28,7 +29,7 @@ export default function useData(): IChat {
                 avatar: "https://www.w3schools.com/howto/img_avatar.png",
                 text: message
             }
-            await _data.post(`/api/messages/${currentChannel}/send`, data);
+            await _data.post(`${Project.api}${currentChannel}/send`, data);
         }
 
     }
@@ -36,7 +37,7 @@ export default function useData(): IChat {
         const currentChannel = `${channel.current}`
         const currentMessages = state.get().messages[currentChannel];
         const lastMessage: IMessage|null = currentMessages?.length ? currentMessages[currentMessages.length-1] : null
-        _data.get(lastMessage ? `/api/messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
+        _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
                 state.set((draft)=>{
                     draft.messages[currentChannel] = messages.data.concat(draft.messages[currentChannel] || [])

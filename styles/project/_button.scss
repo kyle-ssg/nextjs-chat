@@ -1,20 +1,35 @@
-h1,h2,h3,h4,h5,h6{
-    font-weight:bold!important;
+.btn {
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: $border-radius;
+    &-primary {
+        height: 44px;
+        background-color: $brand-primary;
+        &:hover {
+            background-color: darken($brand-primary,10);
+        }
+        &:active, &:focus {
+            background-color: darken($brand-primary,15) !important;
+        }
+    }
+    &--full-width {
+        width: 100%;
+    }
 }
 
-.text-small{
-    font-size:0.75rem!important;
-}
-
-p{
-    color: #22354a;
-    opacity: 0.85;
-}
-
-.large-para{
-    font-size:1.25rem;
-}
-
-.bold-link{
-    font-weight:bold!important;
+a {
+    color: $brand-primary;
+    font-weight: 500;
+    &:visited {
+        color: $brand-primary;
+    }
+    &:hover {
+        color: darken($brand-primary,10);
+        text-decoration: none;
+    }
+    &:active, &:focus {
+        color: darken($brand-primary,15) !important;
+        text-decoration: none;
+    }
 }

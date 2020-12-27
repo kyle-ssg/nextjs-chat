@@ -42,7 +42,12 @@ const _data = {
             .text() // cloned so response body can be used downstream
             .then((err: string) => {
                 // eslint-disable-next-line
-                return Promise.reject({ ...response, _bodyText: err, httpStatus: response.status});
+                try {
+                    return Promise.reject({ ...response, message: JSON.parse(err).message, httpStatus: response.status});
+                } catch (e) {
+                    return Promise.reject({ ...response, message: err, httpStatus: response.status});
+
+                }
             });
     },
 
@@ -101,7 +106,7 @@ const _data = {
             ) {
                 options.body = "{}";
             }
-            
+
             const req = fetch(url, options);
             return req
                 .then(_data.status)
