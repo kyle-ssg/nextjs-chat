@@ -106,11 +106,8 @@ $breakpoints: (
 $border-radius-large: 24px;
 $border-radius: 10px;
 $border-radius-small: 4px;
-
-
 $sidebar-width: 5px;
 $sidemenu-width: 80px*3;
-
 
 $body-bg: #d3d3d9;
 $shadow-color: rgb(214 214 214 / 20%);
@@ -123,13 +120,15 @@ $label-color: #737f8c;
 $label-background-active: $brand-primary;
 $label-color-active: #fff;
 $title-color: $brand-primary;
+$input-background: #e1e1e1;
 
+$input-background-dark: #3f444a;
 $brand-primary-dark: lighten($brand-primary, 20);
 $sidebar-background-dark: $brand-primary;
 $body-bg-dark: #1f2224;
 $body-bg-inner-dark: #35393e;
 $sidemenu-background-dark: #2e3135;
 $title-color-dark: lighten($brand-primary, 20);
-$label-color-dark: #999;
+$label-color-dark: #aaa;
 $label-color-active-dark: #f1f1f1;
 $shadow-color-dark: rgb(0 0 0 / 20%);

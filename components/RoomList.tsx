@@ -1,4 +1,5 @@
-import React, {FunctionComponent} from 'react';
+import AsyncStorage from '@callstack/async-storage';
+import React, {FunctionComponent, useEffect} from 'react';
 import useData from "../common/useData";
 import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
@@ -33,6 +34,7 @@ const RoomName: FunctionComponent<RoomItemType> = ({name,currentRoom,voice, icon
 const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
     const toggleDarkMode = ()=> {
         document.body.classList.toggle("dark")
+        AsyncStorage.setItem("darkmode",document.body.classList.contains("dark")?"dark":"");
     }
     return (
         <div>

@@ -10,7 +10,7 @@ export interface IUser extends Document{
 export interface IMessage extends Document{
     name: string,
     avatar: string,
-    createdAt: string,
+    createdAt?: string,
     text: string
 }
 

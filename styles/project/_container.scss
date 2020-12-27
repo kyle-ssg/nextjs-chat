@@ -38,19 +38,28 @@ body.dark .page-container {
       }
     }
   }
+  &__main {
+    .input-container {
+      background-color: $input-background-dark;
+      input {
+        color: $label-color-dark;
+      }
+    }
+  }
 }
-
+$margin:0px;
+$radius: 0;
 .page-container {
   @include darkMode();
   background-color: $body-bg-inner;
-  height: calc(100% - 48px);
+  height: calc(100% - 0px);
   top: 0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
-  margin: 24px;
+  margin: $margin;
   box-shadow: $shadow-color -1px 11px 20px 15px;;
-  border-radius: $border-radius-large;
+  border-radius: $radius;
   display: flex;
   flex-direction: row;
 
@@ -60,7 +69,7 @@ body.dark .page-container {
     bottom: 0;
     left: 0;
     width: $sidebar-width;
-    border-radius: $border-radius-large;
+    border-radius: $radius;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     background-color: $sidebar-background;
@@ -68,7 +77,30 @@ body.dark .page-container {
   }
 
   &__main {
-
+    position: relative;
+    left: $sidebar-width;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    .input-container {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      right: 16px;
+      background-color: $input-background;
+      height: 44px;
+      border-radius: $border-radius;
+      input {
+        height: 100%;
+        width: 100%;
+        text-indent: 8px;
+        background-color: transparent;
+        border: none;
+        outline: none !important;
+        color: $label-color;
+      }
+    }
   }
 
   &__side-menu {
@@ -77,6 +109,7 @@ body.dark .page-container {
     padding: 16px 0 16px 16px;
 
     .room-name {
+      user-select: none;
       font-weight: 500;
       color: $label-color;
       cursor: pointer;
@@ -110,6 +143,7 @@ body.dark .page-container {
     }
 
     label {
+      user-select: none;
       text-transform: uppercase;
       color: $title-color;
       font-weight: 500;
