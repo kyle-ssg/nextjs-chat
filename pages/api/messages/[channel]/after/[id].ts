@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import mongoose from 'mongoose'
 
-import {getDB} from '../../../../../server/connect'
-import {Message} from "../../../../../server/schemas";
-import {pagedResponse} from "../../../../../server/paged-response";
+import {getDB} from 'server/connect'
+import {Message} from "server/schemas";
+import {pagedResponse} from "server/paged-response";
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
     await getDB();

@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {IMessage, PagedResponse} from "../models";
+import {IMessage, PagedResponse} from "models";
 import _data from "./_data";
 import {useGlobalState} from "./state";
 import Project from "./project";

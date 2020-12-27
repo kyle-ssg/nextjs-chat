@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useState} from 'react';
-import safeEventParse from "../common/saveEventParse";
-import useAuth from "../common/useAuth";
+import safeEventParse from "common/saveEventParse";
+import useAuth from "common/useAuth";
 import ErrorMessage from "./ErrorMessage"; // we need this to make JSX compile
 
 type ComponentType = {

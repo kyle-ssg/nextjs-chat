@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import {IUserBase} from "../models";
+import {IUserBase} from "models";
 const secret = process.env.JWT_SECRET;
 
 export function signToken(data) {

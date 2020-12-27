@@ -1,5 +1,5 @@
 import mongoose, {PassportLocalModel, Schema} from "mongoose";
-import {IMessage, IUserBase, IUser} from "../models";
+import {IMessage, IUserBase, IUser} from "models";
 import passportLocalMongoose from 'passport-local-mongoose';
 import {signToken} from "./jwt-handler";
 

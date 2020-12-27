@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@callstack/async-storage": "^2.0.3",
+    "@google-cloud/storage": "^5.7.0",
+    "@google-cloud/vision": "^2.1.2",
     "@hookstate/core": "^3.0.2",
     "bootstrap": "4.4.1",
     "classname": "0.0.0",

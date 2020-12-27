@@ -2,8 +2,8 @@ import AsyncStorage from '@callstack/async-storage';
 import React, {useState} from 'react'
 import '../styles/index.scss'
 import { useEffect } from "react";
-import { useGlobalState } from "../common/state";
-import _data from "../common/_data";
+import { useGlobalState } from "common/state";
+import _data from "common/_data";
 
 
 export default function MyApp({ Component, pageProps }) {

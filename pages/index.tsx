@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import {useEffect, useState} from "react";
-import RoomList from "../components/RoomList";
-import useData from "../common/useData";
-import Input from "../components/Input";
-import ChatContainer from "../components/ChatContainer";
+import RoomList from "components/RoomList";
+import useData from "common/useData";
+import Input from "components/Input";
+import ChatContainer from "components/ChatContainer";
 const TIMER = 5000;
 
 export default function Home() {

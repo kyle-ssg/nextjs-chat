@@ -2,7 +2,7 @@ import {useState} from "react";
 
 import _data from "./_data";
 import Project from "./project";
-import {IUser} from "../models";
+import {IUser} from "models";
 import {useGlobalState} from "./state";
 import AsyncStorage from '@callstack/async-storage';
 const useAuth = ()=>{
