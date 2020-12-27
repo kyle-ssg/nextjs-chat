@@ -109,6 +109,7 @@ $radius: 0;
     padding: 16px 0 16px 16px;
 
     .room-name {
+      @include darkMode();
       user-select: none;
       font-weight: 500;
       color: $label-color;
@@ -131,6 +132,7 @@ $radius: 0;
           }
         }
       }
+      background-color: transparent;
 
       &--active {
         background-color: $label-background-active;
