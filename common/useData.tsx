@@ -4,6 +4,7 @@ import _data from "./_data";
 import {useGlobalState} from "./state";
 import Project from "./project";
 
+const MAX_MESSAGES = 100;
 
 type IChat = {
     setRoom: (name: string) => void,
@@ -41,6 +42,7 @@ export default function useData(): IChat {
             .then((messages: PagedResponse<IMessage>) => {
                 state.set((draft)=>{
                     draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
+                    draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
                     return draft
                 })
             })
