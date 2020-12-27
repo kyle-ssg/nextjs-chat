@@ -1,5 +1,5 @@
-import vision from '@google-cloud/vision';
-import {Storage} from '@google-cloud/storage';
+import vision from "@google-cloud/vision";
+import {Storage} from "@google-cloud/storage";
 const credentials = JSON.parse(process.env.GCP);
 
 export const storage = new Storage({

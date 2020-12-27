@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {getDB} from "server/connect'
+import {getDB} from "server/connect"
 import {Message} from "server/schemas";
 import {pagedResponse} from "server/paged-response";
 

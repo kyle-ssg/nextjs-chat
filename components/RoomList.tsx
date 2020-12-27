@@ -1,8 +1,8 @@
-import AsyncStorage from '@callstack/async-storage';
-import React, {FunctionComponent, useEffect} from 'react';
+import AsyncStorage from "@callstack/async-storage";
+import React, {FunctionComponent, useEffect} from "react";
 import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
-import cx from 'classname';
+import cx from "classname";
 type ComponentType = {
     setRoom:(name:string)=>void
     room: string

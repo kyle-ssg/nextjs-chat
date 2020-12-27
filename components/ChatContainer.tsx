@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent} from "react";
 import {useGlobalState} from "common/state";
 import {DEFAULT_AVATAR} from "common/constants";
 import {IMessage} from "models"; // we need this to make JSX compile
-import cx from 'classname'
+import cx from "classname"
 
 type ComponentType = {
     room: string

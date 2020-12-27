@@ -1,5 +1,4 @@
-import passport from 'passport';
-import {Strategy as LocalStrategy} from 'passport-local';
+import passport from "passport";
 import {User} from "./schemas";
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());

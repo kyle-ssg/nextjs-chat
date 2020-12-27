@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useState} from "react";
 import {useGlobalState} from "common/state";
 import LoginModal from "./LoginModal"; // we need this to make JSX compile
 

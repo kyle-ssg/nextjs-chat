@@ -4,7 +4,7 @@ import _data from "./_data";
 import Project from "./project";
 import {IUser} from "models";
 import {useGlobalState} from "./state";
-import AsyncStorage from '@callstack/async-storage';
+import AsyncStorage from "@callstack/async-storage";
 const useAuth = ()=>{
     const state = useGlobalState()
     const [isLoading, setIsLoading] = useState<boolean>(false)

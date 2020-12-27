@@ -1,8 +1,3 @@
-// import jwt from 'jwt-decode';
-// import Constants from './constants';
-// import _store  from '../store';
-// import AppActions from '../app-actions';
-
 const getQueryString = (params: any): string => {
     const esc = encodeURIComponent;
     return Object.keys(params)

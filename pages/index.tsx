@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from "next/head"
 import {useEffect, useState} from "react";
 import RoomList from "components/RoomList";
 import useData from "common/useData";

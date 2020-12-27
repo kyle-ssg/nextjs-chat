@@ -1,7 +1,7 @@
-import mongoose, {Schema, Document} from 'mongoose';
+import mongoose, {Schema, Document} from "mongoose";
 import {NextApiRequest, NextApiResponse} from "next";
 
-import {getDB} from 'server/connect'
+import {getDB} from "server/connect"
 import {parseUser, User} from "server/schemas";
 import {pagedResponse} from "server/paged-response";
 

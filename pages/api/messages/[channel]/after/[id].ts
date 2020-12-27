@@ -1,7 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import mongoose from 'mongoose'
+import type { NextApiRequest, NextApiResponse } from "next"
+import mongoose from "mongoose"
 
-import {getDB} from 'server/connect'
+import {getDB} from "server/connect"
 import {Message} from "server/schemas";
 import {pagedResponse} from "server/paged-response";
 

@@ -1,7 +1,6 @@
-import AsyncStorage from '@callstack/async-storage';
-import React, {useState} from 'react'
+import AsyncStorage from "@callstack/async-storage";
+import React, {useState, useEffect} from "react"
 import '../styles/index.scss'
-import { useEffect } from "react";
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
 

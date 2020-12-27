@@ -1,5 +1,5 @@
 import {storage} from "./gcp";
-import stream from 'stream';
+import stream from "stream";
 import Project from "common/project";
 export default async function uploadPhoto(prefix:string,base64:string) {
     const bufferStream = new stream.PassThrough();

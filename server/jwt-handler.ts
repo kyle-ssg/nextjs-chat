@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 import {IUserBase} from "models";
 const secret = process.env.JWT_SECRET;
 
