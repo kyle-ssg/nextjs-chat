@@ -1,5 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {User} from "../../../../server/schemas";
+import {parseUser, User} from "../../../../server/schemas";
 import '../../../../server/auth';
 
 
@@ -18,7 +18,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
         if (err) {
             res.status(400).json(err)
         } else {
-            res.status(200).json({ok:1})
+            res.status(200).json(parseUser(user))
         }
     })
 }

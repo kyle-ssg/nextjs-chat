@@ -1,5 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {User} from "../../../../server/schemas";
+import {parseUser, User} from "../../../../server/schemas";
 import '../../../../server/auth';
 import {getDB} from "../../../../server/connect";
 
@@ -15,8 +15,8 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
     }
     try {
         const { user } = await User.authenticate()(username, password);
-        res.status(200).json(user)
+        res.status(200).json(parseUser(user,true))
     } catch (e) {
-        res.status(403).json({message:"Please check your username and password"})
+        res.status(403).json({message:e?.message || e})
     }
 }
