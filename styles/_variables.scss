@@ -110,7 +110,9 @@ $sidebar-width: 5px;
 $sidemenu-width: 80px*3;
 
 $body-bg: #d3d3d9;
+$body-color: #333;
 $shadow-color: rgb(214 214 214 / 20%);
+$shadow-color-alt: rgb(165 165 165 / 20%);
 $body-bg-inner: #fff;
 $brand-primary: #4749a0;
 $text-light: #999;
@@ -123,6 +125,7 @@ $title-color: $brand-primary;
 $input-background: #e1e1e1;
 
 $input-background-dark: #3f444a;
+$body-color-dark: #f1f1f1;
 $brand-primary-dark: lighten($brand-primary, 20);
 $sidebar-background-dark: $brand-primary;
 $body-bg-dark: #1f2224;

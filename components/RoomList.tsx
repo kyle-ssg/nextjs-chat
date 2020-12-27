@@ -1,6 +1,5 @@
 import AsyncStorage from '@callstack/async-storage';
 import React, {FunctionComponent, useEffect} from 'react';
-import useData from "../common/useData";
 import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
 import cx from 'classname';

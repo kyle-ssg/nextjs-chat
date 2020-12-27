@@ -1,0 +1,40 @@
+$size: 50px;
+.message {
+  &--you {
+    flex-direction: column-reverse;
+  }
+  &__avatar {
+    width: $size;
+    height: $size;
+    border-radius: $size/2;
+  }
+  &__author{
+    font-weight: bold;
+    color: $title-color;
+  }
+  &__text {
+    color: $body-color;
+    font-weight: 500;
+  }
+  &__content {
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-color-alt 0px 3px 10px 2px;
+  }
+  padding: 8px;
+}
+
+body.dark {
+  .message {
+    &__text {
+      color: $body-color-dark;
+    }
+    &__content {
+      box-shadow: $shadow-color-dark 0px 3px 10px 2px;
+    }
+    &__author{
+      color: $title-color-dark;
+    }
+  }
+}

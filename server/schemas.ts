@@ -41,4 +41,5 @@ export const Message = global.Message = global.Message || mongoose.model<IMessag
     name: String,
     avatar: String,
     createdAt: { type: Date, default: Date.now },
+    messageType: { type: String, default: "TEXT" },
 }));

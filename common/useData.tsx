@@ -1,23 +1,21 @@
 import {useEffect, useRef, useState} from "react";
 import {IMessage, PagedResponse} from "../models";
 import _data from "./_data";
+import {useGlobalState} from "./state";
 
-const TIMER = 5000;
-let chatCache = {}
 
 type IChat = {
-    chat: Record<string, IMessage[]>,
     setRoom: (name: string) => void,
     sendMessage: (message: string) => void,
-    room: string
+    room: string,
+    getMessages: ()=> void;
 }
 export default function useData(): IChat {
-    const [lastUpdated, setLastUpdated] = useState<number>(Date.now().valueOf());
+    const state = useGlobalState();
     const channel = useRef("general")
     const setRoom = (name: string) => {
         if (channel.current !== name) {
             channel.current = name;
-            setLastUpdated(Date.now().valueOf())
             getMessages()
         }
     }
@@ -31,32 +29,26 @@ export default function useData(): IChat {
                 text: message
             }
             await _data.post(`/api/messages/${currentChannel}/send`, data);
-            setLastUpdated(Date.now().valueOf())
         }
 
     }
     const getMessages = () => {
         const currentChannel = `${channel.current}`
-        const currentMessages = chatCache[currentChannel];
+        const currentMessages = state.get().messages[currentChannel];
         const lastMessage: IMessage|null = currentMessages?.length ? currentMessages[currentMessages.length-1] : null
         _data.get(lastMessage ? `/api/messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
-                chatCache[currentChannel] = messages.data.concat(chatCache[currentChannel] || []);
-                setLastUpdated(Date.now().valueOf())
+                state.set((draft)=>{
+                    draft.messages[currentChannel] = messages.data.concat(draft.messages[currentChannel] || [])
+                    return draft
+                })
             })
     }
-    useEffect(() => {
-        getMessages()
-        setInterval(() => {
-            getMessages()
-        }, TIMER)
-    }, []);
-
 
     return {
-        chat: chatCache,
         setRoom,
         room: channel.current,
-        sendMessage
+        sendMessage,
+        getMessages
     }
 }
