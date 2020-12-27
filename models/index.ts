@@ -1,11 +1,14 @@
 import {Document} from "mongoose";
 
-export interface IUser extends Document{
-    name: string,
+export interface IUserBase {
+    avatar: string,
     bio: string,
-    createdAt: string,
-    avatar: string
+    createdAt?: string,
+    role: string
+    username: string,
 }
+
+export interface IUser extends Document, IUserBase{}
 
 export interface IMessage extends Document{
     name: string,

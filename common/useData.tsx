@@ -12,7 +12,7 @@ type IChat = {
     room: string
 }
 export default function useData(): IChat {
-    const [lastUpdated, setLastUpdated] = useState<number>(Date.now().valueOf())
+    const [lastUpdated, setLastUpdated] = useState<number>(Date.now().valueOf());
     const channel = useRef("general")
     const setRoom = (name: string) => {
         if (channel.current !== name) {
