@@ -29,7 +29,7 @@ const Login: FunctionComponent<ComponentType> = ({onComplete}) => {
                 submit();
                 return false
             }}>
-                <h4 className="mb-4">
+                <h4 className="mb-4 text-center">
                     {mode === "LOGIN"? "Welcome back.": "Let's sign you up."}
 
                 </h4>

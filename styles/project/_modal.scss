@@ -19,3 +19,11 @@ body.ReactModal__Body--open .page-container {
 body.ReactModal__Body--before-close .page-container {
   filter: blur(0px);
 }
+
+body.dark {
+  .ReactModal__Overlay {
+    .ReactModal__Content {
+      box-shadow: $shadow-color-alt-dark 0px 0px 20px 7px;
+    }
+  }
+}
