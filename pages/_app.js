@@ -2,6 +2,7 @@ import AsyncStorage from "@callstack/async-storage";
 import React, {useState, useEffect} from "react"
 import { useRouter } from 'next/router'
 import 'react-image-crop/lib/ReactCrop.scss';
+import 'rc-switch/assets/index.css';
 
 import '../styles/index.scss'
 import { useGlobalState } from "common/state";

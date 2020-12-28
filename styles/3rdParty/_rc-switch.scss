@@ -1,0 +1,26 @@
+.rc-switch-checked {
+  border: 1px solid $brand-primary;
+  background-color: $brand-primary;
+  &:after {
+    left: 47px;
+  }
+}
+
+.rc-switch {
+  width: 70px;
+}
+.rc-switch:focus {
+  box-shadow:none;
+}
+.darkmode {
+  position: absolute;
+  bottom: 10px;
+  width: $sidemenu-width - 100;
+  text-align: center;
+}
+
+.rc-switch-inner {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}

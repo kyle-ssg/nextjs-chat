@@ -1,10 +1,11 @@
 import AsyncStorage from "@callstack/async-storage";
-import React, {FunctionComponent, useEffect} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
 import cx from "classname";
 import Project from "../common/project";
 import Link from "next/link"
+import Switch from "rc-switch";
 type ComponentType = {
     setRoom:(name:string)=>void
     room: string
@@ -37,9 +38,11 @@ const RoomName: FunctionComponent<RoomItemType> = ({name,currentRoom,voice, icon
 
 
 const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
+    const [isDark, setIsDark] = useState<boolean>(false)
     const toggleDarkMode = ()=> {
         document.body.classList.toggle("dark")
         AsyncStorage.setItem("darkmode",document.body.classList.contains("dark")?"dark":"");
+        setIsDark(document.body.classList.contains("dark"))
     }
     return (
         <div>
@@ -59,9 +62,16 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
             <label>
                 Personal
             </label>
-                <button onClick={toggleDarkMode}>
-                    dark
-                </button>
+                <div className="mt-2">
+                    Soon
+                </div>
+                <div className="darkmode">
+                    <Switch
+                        checkedChildren="DARK"
+                        unCheckedChildren="LIGHT"
+                        onChange={toggleDarkMode} checked={typeof document!=='undefined' && document.body.classList.contains("dark")}/>
+                </div>
+
             </div>
         </div>
     )
