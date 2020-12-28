@@ -40,7 +40,7 @@ const UserList: FunctionComponent<ComponentType> = ({}) => {
             <div className="user-list mt-4">
                 {
                     filteredUsers?.map((user)=>(
-                        <UserSummary user={user}/>
+                        <UserSummary key={user._id} user={user}/>
                     ))
                 }
             </div>
