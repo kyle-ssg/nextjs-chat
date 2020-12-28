@@ -30,7 +30,6 @@ export default function MyApp({ Component, pageProps }) {
     }, [router.query.room])
 
     useEffect(() => {
-        getMessages()
         setInterval(() => {
             getMessages()
         }, TIMER)
