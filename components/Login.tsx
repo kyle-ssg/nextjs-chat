@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import safeEventParse from "common/saveEventParse";
 import useAuth from "common/useAuth";
 import ErrorMessage from "./ErrorMessage"; // we need this to make JSX compile
@@ -21,6 +21,9 @@ const Login: FunctionComponent<ComponentType> = ({onComplete}) => {
                 .then(onComplete)
         }
     }
+    useEffect(()=>{
+        document.getElementById("login").focus()
+    },[])
     return (
         <>
             <form onSubmit={(e)=>{
@@ -35,6 +38,7 @@ const Login: FunctionComponent<ComponentType> = ({onComplete}) => {
                 </h4>
                 <div className="input-container-default mb-4">
                     <input
+                        id="login"
                         placeholder="username"
                         type="text"
                         onChange={(e) => {
