@@ -6,6 +6,7 @@ import RightSidebarContainer from "../components/RightSidebarContainer";
 import Project from "../common/project";
 import {DEFAULT_AVATAR} from "../common/constants";
 import useAuth from "../common/useAuth";
+import bot from "../common/bot";
 
 export default function Home() {
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -22,38 +23,19 @@ export default function Home() {
             <div>
                 {invalidRoom ? (
                     <div className="messages">
-                        <Message message={{
-                            username:"God",
-                            avatar:DEFAULT_AVATAR,
-                            messageType:"TEXT",
-                            text:"You do not have access to this room."
-                        }}/>
-                        <Message message={{
-                            username:"God",
-                            avatar:DEFAULT_AVATAR,
-                            messageType:"TEXT",
-                            text:"Sorry :)."
-                        }}/>
+                        <Message message={bot({text:"You do not have access to this room."})}/>
+
+                        <Message message={bot({text:"Sorry :)."})}/>
                     </div>
                     ): needsVoice? (
                     <div className="messages">
-                        <Message message={{
-                            username:"God",
-                            avatar:DEFAULT_AVATAR,
-                            messageType:"TEXT",
-                            text:"You need to login to use voice rooms."
-                        }}/>
-                        <Message message={{
-                            username:"God",
-                            avatar:DEFAULT_AVATAR,
-                            messageType:"TEXT",
-                            text:":)."
-                        }}/>
+                        <Message message={bot({text:"You need to login to use voice rooms."})}/>
+                        <Message message={bot({text:"Click login on the top right of the screen :)."})}/>
                     </div>
                 ) : (
                         <>
                             <ChatContainer room={room}/>
-                            <Input onSubmit={sendMessage}/>
+                            {user?.role !== "ADMIN" && Project.readOnlyRooms.includes(room) ? null : <Input onSubmit={sendMessage}/> }
                         </>
                 )}
             </div>

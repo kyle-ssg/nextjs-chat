@@ -6,6 +6,7 @@ import cx from "classname";
 import Project from "../common/project";
 import Link from "next/link"
 import Switch from "rc-switch";
+import useAuth from "../common/useAuth";
 type ComponentType = {
     setRoom:(name:string)=>void
     room: string
@@ -44,6 +45,8 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
         AsyncStorage.setItem("darkmode",document.body.classList.contains("dark")?"dark":"");
         setIsDark(document.body.classList.contains("dark"))
     }
+    const {user} = useAuth()
+
     return (
         <div>
             <div className="mb-2">
@@ -51,12 +54,14 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
                     Chat
                 </label>
                 {Project.chatRooms.map((name)=>(<RoomName currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
+                {user?.role === "ADMIN" && Project.adminOnlyRooms.map((name)=>(<RoomName currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
                 <label>
                     Voice
                 </label>
                 {Project.voiceRooms.map((name)=>(<RoomName voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
+                {user?.role === "ADMIN" && Project.adminVoiceOnlyRooms.map((name)=>(<RoomName voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
             <label>
