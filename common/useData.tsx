@@ -14,17 +14,20 @@ type IChat = {
 }
 export default function useData(): IChat {
     const state = useGlobalState();
-    const channel = useRef("general")
     const setRoom = (name: string) => {
-        if (channel.current !== name) {
-            channel.current = name;
+        if (state.get().room !== name) {
+            state.set((newState)=>{
+                newState.room = name
+                return newState
+            });
             getMessages()
         }
     }
     const sendMessage = async (message: string) => {
         const text = message?.trim();
+        const room = state.get().room;
         if (text) {
-            const currentChannel = `${channel.current}`
+            const currentChannel = `${room}`
             const data: Partial<IMessage> = {
                 text: message
             }
@@ -32,10 +35,13 @@ export default function useData(): IChat {
                 getMessages()
             })
         }
-
     }
     const getMessages = () => {
-        const currentChannel = `${channel.current}`
+        const room = state.get().room;
+        if (!room) {
+            return
+        }
+        const currentChannel = `${room}`
         const currentMessages = state.get().messages[currentChannel];
         const lastMessage: IMessage|null = currentMessages?.length ? currentMessages[currentMessages.length-1] : null
         _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
@@ -52,7 +58,7 @@ export default function useData(): IChat {
 
     return {
         setRoom,
-        room: channel.current,
+        room: state.get().room,
         sendMessage,
         getMessages
     }

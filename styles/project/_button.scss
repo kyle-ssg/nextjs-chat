@@ -16,6 +16,21 @@
     &--full-width {
         width: 100%;
     }
+    &-outline-primary {
+        background-color: transparent !important;
+        border-color: $brand-primary !important;
+        color: $brand-primary !important;
+        border-width: 2px;
+        border-style: solid;
+        &:hover {
+            color: darken($brand-primary,10)!important;
+            border-color: darken($brand-primary,10) !important;
+        }
+        &:active, &:focus {
+            color: darken($brand-primary,15) !important;
+            border-color: darken($brand-primary,15) !important;
+        }
+    }
 }
 
 a {
@@ -31,5 +46,35 @@ a {
     &:active, &:focus {
         color: darken($brand-primary,15) !important;
         text-decoration: none;
+    }
+}
+
+body.dark {
+
+    a {
+        color: lighten($brand-primary,5);
+    }
+    .btn {
+        &-primary {
+            &:hover {
+                background-color: lighten($brand-primary,10)!important;
+            }
+            &:active, &:focus {
+                background-color: lighten($brand-primary,15) !important;
+            }
+        }
+        &-outline-primary {
+
+            border-color: lighten($brand-primary,5) !important;
+            color: lighten($brand-primary,5) !important;
+            &:hover {
+                color: lighten($brand-primary,10) !important;
+                border-color: lighten($brand-primary,10) !important;
+            }
+            &:active, &:focus {
+                color: lighten($brand-primary,15) !important;
+                border-color: lighten($brand-primary,15) !important;
+            }
+        }
     }
 }

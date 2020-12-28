@@ -1,16 +1,42 @@
 import AsyncStorage from "@callstack/async-storage";
 import React, {useState, useEffect} from "react"
-import '../styles/index.scss'
+import { useRouter } from 'next/router'
 import 'react-image-crop/lib/ReactCrop.scss';
 
+import '../styles/index.scss'
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
+import RoomList from "../components/RoomList";
+import useData from "../common/useData";
+import { route } from "next/dist/next-server/server/router";
 
+const TIMER = 5000;
 
 export default function MyApp({ Component, pageProps }) {
     const [isActive, setIsActive] = useState(false);
-    const [initialUser, setInitialUser] = useState(false);
     const state = useGlobalState();
+    const {
+        setRoom,
+        room,
+        getMessages,
+    } = useData();
+
+
+    const router = useRouter()
+
+    useEffect(()=>{
+        if(router.query.room){
+            setRoom(router.query.room)
+        }
+    }, [router.query.room])
+
+    useEffect(() => {
+        getMessages()
+        setInterval(() => {
+            getMessages()
+        }, TIMER)
+    }, []);
+
     useEffect(()=>{
         AsyncStorage.multiGet(["darkmode", "user"]).then(([darkMode,user])=>{
             if(darkMode[1]==="dark") {
@@ -31,5 +57,14 @@ export default function MyApp({ Component, pageProps }) {
             setIsActive(true)
         })
     },[])
-    return isActive? <Component {...pageProps} /> : null
+
+    return (
+        <div className="page-container">
+            <div className="page-container__sidebar"/>
+            <div className="page-container__side-menu">
+                <RoomList room={room} setRoom={setRoom}/>
+            </div>
+            {isActive? <Component {...pageProps} /> : null}
+        </div>
+    )
 }

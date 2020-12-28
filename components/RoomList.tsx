@@ -4,6 +4,7 @@ import HashtagIcon from "./icons/HashtagIcon";
 import MicIcon from "./icons/MicIcon"; // we need this to make JSX compile
 import cx from "classname";
 import Project from "../common/project";
+import Link from "next/link"
 type ComponentType = {
     setRoom:(name:string)=>void
     room: string
@@ -21,12 +22,16 @@ type RoomItemType = {
 const RoomName: FunctionComponent<RoomItemType> = ({name,currentRoom,voice, icon, onChange}) => {
     const id = voice?`voice-${name}`:name;
     return (
-        <div onClick={()=>onChange(id)} className={cx({"room-name--active":id===currentRoom},"flex-row room-name")}>
+        <Link
+            href={"/?room="+id}>
+            <div
+                className={cx({"room-name--active":id===currentRoom},"flex-row room-name")}>
             <div className="icon-container">
                 {icon}
             </div>
             {name}
-        </div>
+            </div>
+        </Link>
     )
 }
 

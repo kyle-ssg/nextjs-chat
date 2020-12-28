@@ -1,0 +1,23 @@
+.panel {
+  background-color: $panel-background-color;
+  border-radius: $border-radius;
+  padding: 16px;
+  .username {
+    font-weight: 500;
+  }
+  svg {
+    width: 16px;
+    path {
+      fill: $body-color;
+    }
+  }
+}
+
+body.dark {
+  .panel {
+    background-color: $panel-background-color-dark;
+    path {
+      fill: $body-color-dark;
+    }
+  }
+}

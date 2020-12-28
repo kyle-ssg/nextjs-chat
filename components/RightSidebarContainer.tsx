@@ -3,7 +3,8 @@ import {useGlobalState} from "../common/state";
 import useAuth from "../common/useAuth";
 import LoginModal from "./LoginModal";
 import Avatar from "./Avatar";
-import {DEFAULT_AVATAR} from "../common/constants"; // we need this to make JSX compile
+import {DEFAULT_AVATAR} from "../common/constants";
+import UserIcon from "./icons/UserIcon"; // we need this to make JSX compile
 
 type ComponentType = {}
 
@@ -19,24 +20,34 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
 
             <div className="panel">
                 {user? (
-                    <div className="text-center mb-2">
-                        <Avatar isLoading={isLoading} onChange={uploadImage} src={user.avatar||DEFAULT_AVATAR}/>
-                        <button onClick={logout} className="btn btn-primary">
-                            Logout
-                        </button>
+                    <div>
+                        <div className="text-center">
+                            <Avatar isLoading={isLoading} onChange={uploadImage} src={user.avatar||DEFAULT_AVATAR}/>
+                        </div>
+                        <div className="mt-2">
+                            <span className="flex-row row-center username">
+                               <UserIcon/>
+                               <div className="ml-2">
+                                   {user.username}
+                               </div>
+                            </span>
+                        </div>
+                        <div className="mt-2 text-center">
+                            <button className="btn btn-sm btn-outline-primary" onClick={logout}>
+                                Logout
+                            </button>
+                        </div>
+
                     </div>
                 ): (
-                    <div className="text-center mb-2">
-                        <div>
-                            You are not logged in
-                        </div>
-                        <button onClick={()=>setShowLogin(true)} className="btn btn-primary">
+                    <div className="text-center mb-2 mt-2">
+                        <button onClick={()=>setShowLogin(true)} className="btn btn-sm btn-outline-primary">
                             Login / Register
                         </button>
                     </div>
                 )}
-                    <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>
             </div>
+            <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>
 
         </>
     )

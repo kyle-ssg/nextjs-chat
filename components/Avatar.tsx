@@ -41,24 +41,23 @@ const Avatar: FunctionComponent<ComponentType> = ({isLoading,onChange, src}) => 
 
     return (
         <div>
-            <ReactCrop
-                onImageLoaded={(img)=>{
-                    imgRef.current = img;
-                    const min = Math.min(img.width, img.height)
-                    setCrop({
-                        unit: '%',
-                        aspect:1,
-                        width: 100,
-                    })
-                    return false
-                }}
-                src={src}
-                onChange={newCrop => setCrop(newCrop)}
-                crop={crop}
-            />
-            <button disabled={isLoading} onClick={getCroppedImg} className="btn btn-primary">
-                Save
-            </button>
+            <img src={src} className="my-avatar"/>
+            {/*<ReactCrop*/}
+            {/*    onImageLoaded={(img)=>{*/}
+            {/*        imgRef.current = img;*/}
+            {/*        const min = Math.min(img.width, img.height)*/}
+            {/*        setCrop({*/}
+            {/*            unit: '%',*/}
+            {/*            aspect:1,*/}
+            {/*            width: 100,*/}
+            {/*        })*/}
+            {/*        return false*/}
+            {/*    }}*/}
+            {/*    src={src}*/}
+            {/*    onChange={newCrop => setCrop(newCrop)}*/}
+            {/*    crop={crop}*/}
+            {/*/>*/}
+
         </div>
 
     )
