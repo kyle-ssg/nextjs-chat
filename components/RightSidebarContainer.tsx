@@ -4,7 +4,8 @@ import useAuth from "../common/useAuth";
 import LoginModal from "./LoginModal";
 import Avatar from "./Avatar";
 import {DEFAULT_AVATAR} from "../common/constants";
-import UserIcon from "./icons/UserIcon"; // we need this to make JSX compile
+import UserIcon from "./icons/UserIcon";
+import UserList from "./UserList"; // we need this to make JSX compile
 
 type ComponentType = {}
 
@@ -46,6 +47,9 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
                         </button>
                     </div>
                 )}
+            </div>
+            <div className="panel mt-4">
+                <UserList/>
             </div>
             <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>
 

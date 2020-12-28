@@ -115,6 +115,7 @@ $body-bg: #d3d3d9;
 $body-color: #333;
 $brand-primary: #4c4fb8;
 $input-background: #e1e1e1;
+$placeholder-color: #666;
 $label-background-active: $brand-primary;
 $label-color-active: #fff;
 $label-color: #737f8c;
@@ -128,6 +129,7 @@ $text-light: #999;
 $title-color: $brand-primary;
 
 $body-bg-dark: #1f2224;
+$placeholder-color-dark: #5e6672;
 $body-bg-inner-dark: #35393e;
 $body-color-dark: #f1f1f1;
 $brand-primary-dark: lighten($brand-primary, 20);
