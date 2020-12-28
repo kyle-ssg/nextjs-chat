@@ -18,7 +18,10 @@ export interface IMessageBase {
     createdAt?: string,
     text: string
 }
-export interface IUser extends Document, IUserBase{}
+
+export interface IUser extends Document, IUserBase{
+    _id: string
+}
 
 export interface IMessage extends Document, IMessageBase{}
 

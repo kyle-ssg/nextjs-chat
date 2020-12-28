@@ -6,21 +6,26 @@ import {getDB} from "../../../../server/connect";
 
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
-    const {body:{username,password}} = req
-    await getDB()
-    if(!username){
-        res.status(400).json({message:"Please enter a username"})
-    }
-    if(!password){
-        res.status(400).json({message:"Please enter a password"})
-    }
 
-    // @ts-ignore
-    User.register({username, role:"USER", bio:"", avatar:DEFAULT_AVATAR}, password, function(err, user) {
-        if (err) {
-            res.status(400).json(err)
-        } else {
-            res.status(200).json(parseUser(user,true))
+    try {
+        const {body: {username, password}} = req
+        await getDB();
+        if (!username) {
+            res.status(400).json({message: "Please enter a username"})
         }
-    })
+        if (!password) {
+            res.status(400).json({message: "Please enter a password"})
+        }
+
+        // @ts-ignore
+        User.register({username, role: "USER", bio: "", avatar: DEFAULT_AVATAR}, password, function (err, user) {
+            if (err) {
+                res.status(400).json(err)
+            } else {
+                res.status(200).json(parseUser(user, true))
+            }
+        })
+    } catch (e) {
+        res.status(403).json({message:e?.message || e})
+    }
 }

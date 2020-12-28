@@ -3,6 +3,7 @@ import {useGlobalState} from "common/state";
 import {DEFAULT_AVATAR} from "common/constants";
 import {IMessage} from "models"; // we need this to make JSX compile
 import cx from "classname"
+import Voice from "./Voice";
 
 type ComponentType = {
     room: string
@@ -65,15 +66,18 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
                     // @ts-ignore
                     div.scrollTop = div.scrollHeight;
                 }
-                console.log(height,top)
             }
         }
     },[messages.length,room])
+
     return typeof window ==='undefined'? <div className="messages"></div>: (
         <div ref={ref} className="messages">
             {messages.map((message) => (
                <Message key={message._id} yourName={yourName} message={message}/>
             ))}
+            {room.startsWith("voice") && (
+                <Voice key={room} room={room}/>
+            )}
         </div>
     )
 }
