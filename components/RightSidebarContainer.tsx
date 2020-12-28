@@ -48,7 +48,7 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
                     </div>
                 )}
             </div>
-            <div className="panel mt-4">
+            <div className="panel user-list-panel mt-4">
                 <UserList/>
             </div>
             <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>

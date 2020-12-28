@@ -3,6 +3,8 @@ import {IMessage, IUserBase} from "models";
 export type StateType = {
     user?: IUserBase,
     messages: Record<string, IMessage[]>,
+    users?: IUserBase[],
+    online?:string[],
     room?: string
 }
 const state:StateType = {

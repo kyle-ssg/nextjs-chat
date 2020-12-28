@@ -5,6 +5,7 @@ export interface IUserBase {
     bio: string,
     createdAt?: string,
     _id?: string,
+    lastOnline: number,
     updatedAt?: string,
     token?: string,
     role: string

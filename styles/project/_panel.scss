@@ -1,5 +1,5 @@
 .panel {
-  box-shadow: $shadow-color -1px 11px 20px 0px;
+  box-shadow: $shadow-color 0px 3px 11px 0px;
   background-color: $panel-background-color;
   border-radius: $border-radius;
   padding: 16px;
@@ -16,7 +16,7 @@
 
 body.dark {
   .panel {
-    box-shadow: $shadow-color-dark -1px 11px 20px 0px;
+    box-shadow: $shadow-color-dark 0px 3px 11px 0px;
     background-color: $panel-background-color-dark;
     path {
       fill: $body-color-dark;

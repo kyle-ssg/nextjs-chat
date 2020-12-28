@@ -1,0 +1,16 @@
+$size:34px;
+$height: 50vh;
+.user-list {
+  max-height: calc(50vh - 40px);
+  .avatar {
+    width: $size;
+    height: $size;
+    border-radius: $size/2;
+  }
+  overflow-y: auto;
+}
+
+.user-list-panel {
+  max-height: $height;
+  overflow: hidden;
+}

@@ -76,6 +76,8 @@ $radius: 0;
     width: $sidemenu-width;
     background: $rightmenu-background;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
   &__side-menu {
     width: $sidemenu-width;

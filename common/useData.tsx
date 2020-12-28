@@ -46,13 +46,15 @@ export default function useData(): IChat {
         const lastMessage: IMessage|null = currentMessages?.length ? currentMessages[currentMessages.length-1] : null
         _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
-                state.set((draft)=>{
-                    draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
-                    if (draft.messages[currentChannel].length > MAX_MESSAGES) {
-                        draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
-                    }
-                    return draft
-                })
+                if (messages.data.length) {
+                    state.set((draft)=>{
+                        draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
+                        if (draft.messages[currentChannel].length > MAX_MESSAGES) {
+                            draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
+                        }
+                        return draft
+                    })
+                }
             })
     }
 
