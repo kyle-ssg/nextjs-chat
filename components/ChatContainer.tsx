@@ -1,16 +1,17 @@
 import React, {FunctionComponent, useEffect, useRef} from "react";
 import {useGlobalState} from "common/state";
 import {DEFAULT_AVATAR} from "common/constants";
-import {IMessage} from "models"; // we need this to make JSX compile
+import {IMessage, IMessageBase} from "models"; // we need this to make JSX compile
 import cx from "classname"
 import Voice from "./Voice";
+import Project from "../common/project";
 
 type ComponentType = {
     room: string
 }
 
 
-type MessageContentType = { message: IMessage,yourName?:string }
+type MessageContentType = { message: IMessageBase,yourName?:string }
 
 export const Message: FunctionComponent<MessageContentType> = ({message,yourName}) => {
     return (
@@ -69,6 +70,7 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
             }
         }
     },[messages.length,room])
+
 
     return typeof window ==='undefined'? <div className="messages"></div>: (
         <div ref={ref} className="messages">

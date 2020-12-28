@@ -11,8 +11,9 @@ export interface IUserBase {
     username: string,
 }
 export interface IMessageBase {
+    _id?:string,
     username: string,
-    channel: string,
+    channel?: string,
     avatar: string,
     messageType: string,
     createdAt?: string,
@@ -23,7 +24,9 @@ export interface IUser extends Document, IUserBase{
     _id: string
 }
 
-export interface IMessage extends Document, IMessageBase{}
+export interface IMessage extends Document, IMessageBase{
+    _id: string
+}
 
 export type PagedResponse<T>  = {
     data: T[]
