@@ -51,7 +51,7 @@ const Voice: FunctionComponent<ComponentType> = ({room}) => {
             // Traverse all remote users.
             rtc.client.remoteUsers.forEach(user => {
                 // Destroy the dynamically created DIV container.
-                const playerContainer = document.getElementById(user.uid);
+                const playerContainer = document.getElementById(`${user.uid}`);
                 playerContainer && playerContainer.remove();
             });
             await client.leave();
@@ -110,7 +110,7 @@ const Voice: FunctionComponent<ComponentType> = ({room}) => {
 
         client.on("user-unpublished", user => {
             // Get the dynamically created DIV container.
-            const playerContainer = document.getElementById(user.uid);
+            const playerContainer = document.getElementById(`${user.uid}`);
             // Destroy the container.
             if(!playerContainer) {
                 debugger
@@ -120,7 +120,7 @@ const Voice: FunctionComponent<ComponentType> = ({room}) => {
     }
 
     useEffect(()=>{
-        joinChannel();
+        joinChannel().then(r => {});
     },[room, loggedInUser?._id]);
 
     useEffect(()=>{
