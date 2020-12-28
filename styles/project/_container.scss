@@ -82,7 +82,7 @@ $radius: 0;
     background: $sidemenu-background;
     padding: 16px 0 16px 16px;
     overflow-y: auto;
-
+    box-shadow: $shadow-color -1px 11px 20px 0px;
     .room-name {
       @include darkMode();
       user-select: none;
@@ -134,7 +134,7 @@ $radius: 0;
 
 body.dark .page-container {
   background-color: $body-bg-inner-dark;
-  box-shadow: $shadow-color-dark -1px 11px 20px 15px;
+  box-shadow: $shadow-color-dark 1px 7px 4px 0px;
   &__sidebar {
     background-color: $sidebar-background-dark;
   }
@@ -142,6 +142,7 @@ body.dark .page-container {
     background-color: $rightmenu-background-dark;
   }
   &__side-menu {
+    box-shadow: $shadow-color-dark 1px 7px 4px 0px;
     label {
       color: $title-color-dark;
     }

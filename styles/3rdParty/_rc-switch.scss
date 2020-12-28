@@ -1,7 +1,10 @@
 .rc-switch-checked {
   border: 1px solid $brand-primary;
   background-color: $brand-primary;
-  &:after {
+  .rc-switch-inner {
+    color: white;
+  }
+    &:after {
     left: 47px;
   }
 }
@@ -21,6 +24,7 @@
 
 .rc-switch-inner {
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+  color: $brand-primary;
 }
