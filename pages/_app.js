@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 
 import '../styles/index.scss'
 import 'react-image-crop/lib/ReactCrop.scss';
-import 'rc-switch/assets/index.css';
 
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
