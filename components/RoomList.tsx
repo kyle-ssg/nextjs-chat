@@ -31,7 +31,9 @@ const RoomName: FunctionComponent<RoomItemType> = ({name,currentRoom,voice, icon
             <div className="icon-container">
                 {icon}
             </div>
-            {name}
+                <span>
+                    {name}
+                </span>
             </div>
         </Link>
     )
@@ -40,6 +42,13 @@ const RoomName: FunctionComponent<RoomItemType> = ({name,currentRoom,voice, icon
 
 const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
     const [isDark, setIsDark] = useState<boolean>(false)
+    useEffect(()=>{
+      AsyncStorage.getItem("darkmode",(err,res)=>{
+          if (res === 'dark') {
+              setIsDark(true)
+          }
+      })
+    }, [])
     const toggleDarkMode = ()=> {
         document.body.classList.toggle("dark")
         AsyncStorage.setItem("darkmode",document.body.classList.contains("dark")?"dark":"");
@@ -74,7 +83,7 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
                     <Switch
                         checkedChildren="DARK"
                         unCheckedChildren="LIGHT"
-                        onChange={toggleDarkMode} checked={typeof document!=='undefined' && document.body.classList.contains("dark")}/>
+                        onChange={toggleDarkMode} checked={isDark}/>
                 </div>
 
             </div>

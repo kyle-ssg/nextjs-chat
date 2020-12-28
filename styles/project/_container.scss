@@ -81,6 +81,7 @@ $radius: 0;
   }
   &__side-menu {
     width: $sidemenu-width;
+    min-width: 180px;
     background: $sidemenu-background;
     padding: 16px 0 16px 16px;
     overflow-y: auto;
@@ -93,8 +94,14 @@ $radius: 0;
       cursor: pointer;
       line-height: 18px;
       padding: 8px;
+      flex-wrap: nowrap;
       border-radius: $border-radius-small 0 0 $border-radius-small;
-
+      span {
+        display: inline-block;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .icon-container {
         width: 18px;
         height: 18px;
