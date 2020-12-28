@@ -24,7 +24,6 @@ export default function Home() {
                 {invalidRoom ? (
                     <div className="messages">
                         <Message message={bot({text:"You do not have access to this room."})}/>
-
                         <Message message={bot({text:"Sorry :)."})}/>
                     </div>
                     ): needsVoice? (

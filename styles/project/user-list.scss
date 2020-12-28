@@ -13,4 +13,5 @@ $height: 50vh;
 .user-list-panel {
   max-height: $height;
   overflow: hidden;
+  padding: 0 !important;
 }

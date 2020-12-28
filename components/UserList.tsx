@@ -34,10 +34,10 @@ const UserList: FunctionComponent<ComponentType> = ({}) => {
 
     return (
         <>
-            <div className="input-container-default input-container-sm mb-2">
+            <div className="input-container-default input-container-sm mx-2 mt-2">
                 <input onChange={(e)=>setFilter(safeEventParse(e))} placeholder="Search..." type="text"/>
             </div>
-            <div className="user-list mt-4">
+            <div className="ml-2 user-list mt-2">
                 {
                     filteredUsers?.map((user)=>(
                         <UserSummary key={user._id} user={user}/>
