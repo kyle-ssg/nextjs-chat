@@ -26,9 +26,7 @@ export default function MyApp({ Component, pageProps }) {
     const router = useRouter()
 
     useEffect(()=>{
-        if(router.query.room){
-            setRoom(router.query.room||"general")
-        }
+        setRoom(router.query.room||"general")
     }, [router.query.room])
 
     useEffect(() => {
