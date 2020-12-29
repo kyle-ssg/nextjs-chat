@@ -16,7 +16,7 @@ export default function Home() {
     } = useData();
     const {user} = useAuth();
     const requiresAdmin = (Project.adminOnlyRooms.includes(room) || Project.adminVoiceOnlyRooms.includes(room.replace("voice-","")))
-    const adminAccess = user?.role === 'ADMIN' && requiresAdmin
+    const adminAccess = (user?.role.includes('ADMIN') && requiresAdmin)
     const invalidRoom = !Project.chatRooms.includes(room) && !Project.voiceRooms.includes(room.replace("voice-","")) && !adminAccess
 
     const needsVoice = room.includes("-") && !user?._id;
@@ -37,7 +37,7 @@ export default function Home() {
                 ) : (
                         <>
                             <ChatContainer room={room}/>
-                            {user?.role !== "ADMIN" && Project.readOnlyRooms.includes(room) ? null : <Input onSubmit={sendMessage}/> }
+                            {!user?.role.includes("ADMIN") && Project.readOnlyRooms.includes(room) ? null : <Input onSubmit={sendMessage}/> }
                         </>
                 )}
             </div>

@@ -5,6 +5,7 @@ import {IMessage, IMessageBase} from "models"; // we need this to make JSX compi
 import cx from "classname"
 import Voice from "./Voice";
 import Project from "../common/project";
+import AdminActions from "./AdminActions";
 
 type ComponentType = {
     room: string
@@ -77,6 +78,9 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
             {messages.map((message) => (
                <Message key={message._id} yourName={yourName} message={message}/>
             ))}
+            {state.user?.role === "SUPER_ADMIN" &&(
+               <AdminActions room={room}/>
+            )}
             {room.startsWith("voice") && (
                 <Voice key={room} room={room}/>
             )}

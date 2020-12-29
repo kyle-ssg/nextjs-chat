@@ -40,6 +40,7 @@ export default function useData(): IChat {
                 localId: GUID(state.get().user._id)
             };
             state.set((draft)=>{
+                draft.messages[room] = draft.messages[room] || []
                 draft.messages[room].push({
                     avatar:draft.user.avatar,
                     text:message,

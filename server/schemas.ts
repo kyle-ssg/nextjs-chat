@@ -49,5 +49,6 @@ export const Message = global.Message = global.Message || mongoose.model<IMessag
     avatar: String,
     messageType: { type: String, default: "TEXT" },
 }, {
-    timestamps: true
+    timestamps: true,
+    capped: { size: 102400000, max: 100000000, autoIndexId: true }
 }));
