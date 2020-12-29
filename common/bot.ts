@@ -6,6 +6,7 @@ function bot (message:Partial<IMessageBase>):IMessageBase {
         username:"InfoBot",
         avatar:DEFAULT_AVATAR,
         messageType:"TEXT",
+        localId: "",
         text:":).",
         ...message
     }

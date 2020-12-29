@@ -30,6 +30,7 @@
     "react-dropzone": "^11.2.4",
     "react-image-crop": "^8.6.6",
     "react-modal": "^3.12.1",
+    "sanitize-html": "^2.3.0",
     "sass": "^1.30.0"
   },
   "devDependencies": {
