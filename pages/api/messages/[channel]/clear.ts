@@ -2,11 +2,10 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {IUserBase} from "models";
 import {verify} from "server/jwt-handler";
 import {getDB} from "server/connect";
-import {Message, parseUser, User} from "server/schemas";
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
     try {
-        const db = await getDB()
+        await getDB()
         const user: IUserBase = await verify(req.headers.authorization?.split(" ")[1]);
         if (user.role === 'SUPER_ADMIN') {
             await require('mongoose').connection.dropCollection("messages");

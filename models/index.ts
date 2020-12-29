@@ -19,6 +19,8 @@ export interface IMessageBase {
     channel?: string,
     avatar: string,
     localId: string,
+    from?:string,
+    to?:string,
     messageType: string,
     createdAt?: string,
     text: string
@@ -30,6 +32,11 @@ export interface IUser extends Document, IUserBase{
 
 export interface IMessage extends Document, IMessageBase{
     _id: string
+}
+
+export interface IPrivate extends Document {
+    from: string,
+    to:string,
 }
 
 export type PagedResponse<T>  = {

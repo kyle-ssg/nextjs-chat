@@ -6,8 +6,8 @@ import {getDB} from "server/connect";
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
     try {
-        await getDB()
         const {body:{username,password}} = req
+        await getDB()
         if(!username){
             res.status(400).json({message:"Please enter a username"})
         }

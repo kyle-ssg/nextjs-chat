@@ -1,5 +1,5 @@
-import mongoose, {PassportLocalModel, Schema} from "mongoose";
-import {IMessage, IUserBase, IUser} from "models";
+import mongoose, {Model, PassportLocalModel, Schema} from "mongoose";
+import {IMessage, IUserBase, IUser, IPrivate} from "models";
 import passportLocalMongoose from "passport-local-mongoose";
 import {signToken} from "./jwt-handler";
 
@@ -40,7 +40,7 @@ export function parseUser(user:IUser, withToken?:boolean) {
     }
 }
 // @ts-ignore
-export const Message = global.Message = global.Message || mongoose.model<IMessage>("message", new Schema({
+export const Message: Model<IMessage> = global.Message = global.Message || mongoose.model<IMessage>("message", new Schema({
     text: String,
     name: String,
     channel: {type: String, required:true},
@@ -52,3 +52,10 @@ export const Message = global.Message = global.Message || mongoose.model<IMessag
     timestamps: true,
     capped: { size: 102400000, max: 100000000, autoIndexId: true }
 }));
+
+// @ts-ignore
+export const Private:Model<IPrivate> = global.Private = global.Private || mongoose.model<IPrivate>("private", new Schema({
+    from: {type: String, required:true},
+    to: {type: String, required:true},
+    lastUpdated: {type:Date, default:Date.now}
+}, {}));
