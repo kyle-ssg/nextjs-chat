@@ -13,7 +13,7 @@ type IChat = {
     inactiveUsers: StateType['users'],
 }
 
-const timestamp = React.createRef()
+let timestamp = React.createRef()
 
 export const getUsers  = () => {
     const state = globalState;
@@ -36,7 +36,8 @@ export const getUsers  = () => {
                         })
                     }
                     if(timestamp) {
-                        timestamp.current = new Date().setMilliseconds(0).valueOf();
+                        // @ts-ignore
+                        (timestamp.current) = new Date().setMilliseconds(0).valueOf();
                     }
                     return draft
                 })
