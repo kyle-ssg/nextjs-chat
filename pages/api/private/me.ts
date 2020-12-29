@@ -15,7 +15,12 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
         const messages = await Private.find({
             or: [{ from: user._id }, { to: user._id }]
         }, null, {sort: {createdAt:1}}).exec();
-        res.status(200).json(pagedResponse(messages))
+        res.status(200).json(pagedResponse(messages.map((p)=>{
+            if(p.from === user._id) {
+                return p.to;
+            }
+            return p.from;
+        })))
     } catch (e) {
         res.status(500).json(e?.message ? {message:e.message} : e)
     }

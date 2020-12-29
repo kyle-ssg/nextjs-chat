@@ -9,6 +9,7 @@ export type HeartBeatType = {
 export type StateType = {
     user?: IUserBase,
     messages: Record<string, IMessageBase[]>,
+    privates?: string[],
     users?: IUserBase[],
     activeUsers?: IUserBase[],
     inactiveUsers?: IUserBase[],

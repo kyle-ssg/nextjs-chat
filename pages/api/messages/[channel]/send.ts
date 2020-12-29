@@ -4,15 +4,20 @@ import {Message} from "server/schemas";
 import {pagedResponse} from "server/paged-response";
 import {verify} from "server/jwt-handler";
 import {IMessage, IMessageBase, IUserBase} from "models";
+import getFromTo from "../../../../server/getFromTo";
+import getInternalChannelName from "../../../../server/getInternalChannelName";
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
     try {
         await getDB()
         const user: IUserBase = await verify(req.headers.authorization?.split(" ")[1]);
+
+        let channel = getInternalChannelName(`${req.query.channel}`, user._id);
+
         const data:IMessageBase = {
             avatar:user.avatar,
             username:user.username,
-            channel: `${req.query.channel}`,
+            channel,
             messageType:req.body.messageType || "TEXT",
             ...req.body
         }
