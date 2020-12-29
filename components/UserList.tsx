@@ -9,7 +9,7 @@ type ComponentType = {}
 
 type UserSummaryType = {
     user:IUserBase,
-    active:boolean
+    active?:boolean
 }
 
 const UserSummary: FunctionComponent<UserSummaryType> = ({user, active}) => {
