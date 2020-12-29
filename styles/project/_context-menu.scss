@@ -1,0 +1,18 @@
+
+.react-contextmenu {
+    min-width: 200px;
+    background-color: $sidemenu-background;
+    opacity: 0;
+    @include darkMode();
+    border-radius: $border-radius;
+    box-shadow: $shadow-color 0px 3px 6px 2px;
+    z-index: 1;
+    padding: 16px;
+}
+
+body.dark {
+    .react-contextmenu {
+        box-shadow: $shadow-color-dark 0px 3px 6px 2px;
+        background-color: $sidemenu-background-dark;
+   }
+}

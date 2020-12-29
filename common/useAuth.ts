@@ -47,6 +47,7 @@ const useAuth = ()=>{
                         state.user = res
                         return state;
                     });
+                    getUsers()
                     setIsLoading(false);
                 }).catch((e)=>{
                     setIsLoading(false)

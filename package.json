@@ -26,6 +26,7 @@
     "passport-local-mongoose": "^6.0.1",
     "rc-switch": "^3.2.2",
     "react": "16.13.1",
+    "react-contextmenu": "^2.14.0",
     "react-dom": "16.13.1",
     "react-dropzone": "^11.2.4",
     "react-image-crop": "^8.6.6",

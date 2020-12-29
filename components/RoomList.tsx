@@ -79,14 +79,14 @@ const RoomList: FunctionComponent<ComponentType> = ({setRoom,room}) => {
                     Chat
                 </label>
                 {Project.chatRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
-                {user?.role.includes("ADMIN") && Project.adminOnlyRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
+                {user?.role?.includes("ADMIN") && Project.adminOnlyRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} currentRoom={room} key={name} name={name} icon={<HashtagIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
                 <label className="sidebar-label">
                     Voice
                 </label>
                 {Project.voiceRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
-                {user?.role.includes("ADMIN") && Project.adminVoiceOnlyRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
+                {user?.role?.includes("ADMIN") && Project.adminVoiceOnlyRooms.map((name)=>(<RoomName usersPerRoom={usersPerRoom} voice currentRoom={room} key={name} name={name} icon={<MicIcon/>} onChange={setRoom}/>))}
             </div>
             <div className="mb-2">
             <label className="sidebar-label">

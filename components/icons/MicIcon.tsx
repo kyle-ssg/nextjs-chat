@@ -5,7 +5,6 @@ export default function MicIcon(props) {
       <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 352 512"
-          className="prefix__svg-inline--fa prefix__fa-microphone-alt prefix__fa-w-11 prefix__fa-3x"
           {...props}
       >
         <path

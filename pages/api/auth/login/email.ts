@@ -14,8 +14,16 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
         if(!password){
             res.status(400).json({message:"Please enter a password"})
         }
-        const { user } = await User.authenticate()(username, password);
-        res.status(200).json(parseUser(user, true))
+        await User.authenticate()(username, password, (_, user,error)=>{
+            if (error) {
+                res.status(403).json({message:error.message||"Could not authenticate"})
+            } else {
+                // @ts-ignore
+                res.status(200).json(parseUser(user, true))
+            }
+        });
+
+
     } catch (e) {
         res.status(403).json({message:e?.message || e})
     }

@@ -25,10 +25,7 @@ const _data = {
 
     status(response: any): Promise<any> {
         // handle ajax requests
-        // console.debug(response);
-        if (response.status === 403) {
-            return Promise.reject({ message: "UNAUTHORIZED" });
-        }
+
         if (response.status >= 200 && response.status < 300) {
             return Promise.resolve(response);
         }

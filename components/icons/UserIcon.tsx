@@ -4,7 +4,6 @@ function UserIcon(props) {
     return (
         <svg
             viewBox="0 0 448 512"
-            className="prefix__svg-inline--fa prefix__fa-user prefix__fa-w-14 prefix__fa-3x"
             {...props}
         >
             <path

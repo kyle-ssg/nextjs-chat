@@ -5,15 +5,18 @@ import LoginModal from "./LoginModal";
 import Avatar from "./Avatar";
 import {DEFAULT_AVATAR} from "../common/constants";
 import UserIcon from "./icons/UserIcon";
-import UserList from "./UserList"; // we need this to make JSX compile
+import UserList from "./UserList";
+import {useRouter} from "next/router"; // we need this to make JSX compile
 
 type ComponentType = {}
 
 const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
     const {user,logout, uploadImage, isLoading} = useAuth();
     const [showLogin, setShowLogin] = useState<boolean>(false)
-    const submit = ()=> {
-
+    const router = useRouter()
+    const submitLogout = ()=> {
+        logout();
+        router.replace("/")
     }
 
     return (
@@ -33,7 +36,7 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
                             </span>
                         </div>
                         <div className="mt-2 text-center">
-                            <button className="btn btn-sm btn-outline-primary" onClick={logout}>
+                            <button className="btn btn-sm btn-outline-primary" onClick={submitLogout}>
                                 Logout
                             </button>
                         </div>
@@ -50,7 +53,7 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
             <div className="panel user-list-panel mt-4">
                 <UserList/>
             </div>
-            <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>
+            <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={()=>{}}/>
 
         </>
     )
