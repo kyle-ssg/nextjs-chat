@@ -15,7 +15,10 @@ export default function Home() {
         sendMessage,
     } = useData();
     const {user} = useAuth();
-    const invalidRoom = !Project.chatRooms.includes(room) && !Project.voiceRooms.includes(room.replace("voice-",""))
+    const requiresAdmin = (Project.adminOnlyRooms.includes(room) || Project.adminVoiceOnlyRooms.includes(room.replace("voice-","")))
+    const adminAccess = user?.role === 'ADMIN' && requiresAdmin
+    const invalidRoom = !Project.chatRooms.includes(room) && !Project.voiceRooms.includes(room.replace("voice-","")) && !adminAccess
+
     const needsVoice = room.includes("-") && !user?._id;
     return (
     <>

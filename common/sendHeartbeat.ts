@@ -5,7 +5,7 @@ import {IUserBase} from "../models";
 
 
 function findById (user:IUserBase, v:HeartBeatType[]): HeartBeatType {
-    return v.find((h)=>h._id === user._id)
+    return v.find((h)=>h._id === user?._id)
 }
 function activeUsers(users:IUserBase[]):IUserBase[] {
     return users.filter((user)=>!!user.online)
@@ -34,7 +34,7 @@ export default function sendHeartbeat() {
                 const usersPerRoom = {};
                 draft.users = draft.users.map((user)=>{
                     const result = res.find((item)=>{
-                        return item._id===user._id
+                        return item._id===user?._id
                     });
                     if (result) {
                         user.online = true

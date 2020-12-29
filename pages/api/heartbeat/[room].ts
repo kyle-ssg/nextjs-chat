@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const user: IUserBase = await verify(req.headers.authorization?.split(" ")[1]);
             const newData:Partial<IUserBase> = {lastActive: new Date().toISOString(), activeRoom:`${req.query.room}`};
-            await User.updateOne({_id: user._id}, {$set: newData})
+            await User.updateOne({_id: user?._id}, {$set: newData})
         } catch (e){}
         const query = Date.now().valueOf() - Project.HEARTBEAT_TIMER
         const users = await User
