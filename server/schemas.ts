@@ -45,6 +45,7 @@ export const Message = global.Message = global.Message || mongoose.model<IMessag
     name: String,
     channel: {type: String, required:true},
     username: {type: String, required:true},
+    localId: {type: String, required:true},
     avatar: String,
     messageType: { type: String, default: "TEXT" },
 }, {

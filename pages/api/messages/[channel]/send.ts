@@ -14,6 +14,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
             username:user.username,
             channel: `${req.query.channel}`,
             messageType:req.body.messageType || "TEXT",
+            localId:req.body.localId,
             text:req.body.text,
         }
 

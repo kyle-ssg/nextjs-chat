@@ -1,5 +1,5 @@
 import { createState, useState } from "@hookstate/core";
-import {IMessage, IUserBase} from "models";
+import {IMessage, IMessageBase, IUserBase} from "models";
 
 export type HeartBeatType = {
     _id:string,
@@ -8,7 +8,7 @@ export type HeartBeatType = {
 
 export type StateType = {
     user?: IUserBase,
-    messages: Record<string, IMessage[]>,
+    messages: Record<string, IMessageBase[]>,
     users?: IUserBase[],
     activeUsers?: IUserBase[],
     inactiveUsers?: IUserBase[],

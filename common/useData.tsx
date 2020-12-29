@@ -1,8 +1,9 @@
 import {useEffect, useRef, useState} from "react";
-import {IMessage, PagedResponse} from "models";
+import {IMessage, IMessageBase, PagedResponse} from "models";
 import _data from "./_data";
 import {useGlobalState} from "./state";
 import Project from "./project";
+import {GUID} from "./guid";
 
 const MAX_MESSAGES = 100;
 
@@ -11,6 +12,11 @@ type IChat = {
     sendMessage: (message: string) => void,
     room: string,
     getMessages: ()=> void;
+}
+const findByLocalId = (messages:IMessageBase[], id:string) =>{
+    return messages.findIndex((message)=>{
+        return message.localId === id;
+    })
 }
 export default function useData(): IChat {
     const state = useGlobalState();
@@ -29,12 +35,39 @@ export default function useData(): IChat {
         if (text) {
             const currentChannel = `${room}`
             const data: Partial<IMessage> = {
-                text: message
-            }
+                text: message,
+                messageType: "TEXT",
+                localId: GUID(state.get().user._id)
+            };
+            state.set((draft)=>{
+                draft.messages[room].push({
+                    avatar:draft.user.avatar,
+                    text:message,
+                    _id:"",
+                    messageType: "TEXT",
+                    localId:data.localId,
+                    username:draft.user.username
+                });
+                return draft
+            })
+
             await _data.post(`${Project.api}messages/${currentChannel}/send`, data).then(()=>{
                 getMessages()
             })
         }
+    }
+    const getLastRemoteMessage = (currentMessages: IMessageBase[]|null)=> {
+        if (!currentMessages) {
+            return null
+        }
+        let lastMessage, index = currentMessages.length - 1;
+        for ( ; index >= 0; index--) {
+            if (currentMessages[index]._id) {
+                lastMessage = currentMessages[index];
+                break;
+            }
+        }
+        return lastMessage;
     }
     const getMessages = () => {
         const room = state.get().room;
@@ -43,12 +76,23 @@ export default function useData(): IChat {
         }
         const currentChannel = `${room}`
         const currentMessages = state.get().messages[currentChannel];
-        const lastMessage: IMessage|null = currentMessages?.length ? currentMessages[currentMessages.length-1] : null
+        const lastMessage: IMessageBase|null = getLastRemoteMessage(currentMessages);
         _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
                 if (messages.data.length) {
                     state.set((draft)=>{
-                        draft.messages[currentChannel] = (draft.messages[currentChannel] || []).concat(messages.data||[])
+                        if (draft.messages[currentChannel]?.length) {
+                            messages.data.map((newMessage)=>{
+                                const existingIndex = newMessage.localId ? findByLocalId(draft.messages[currentChannel], newMessage.localId) : -1;
+                                if (existingIndex!==-1) {
+                                    draft.messages[currentChannel][existingIndex] = newMessage;
+                                } else {
+                                    draft.messages[currentChannel].push(newMessage)
+                                }
+                            })
+                        } else {
+                            draft.messages[currentChannel] = messages.data;
+                        }
                         if (draft.messages[currentChannel].length > MAX_MESSAGES) {
                             draft.messages[currentChannel] = draft.messages[currentChannel].slice(Math.max(draft.messages[currentChannel].length - MAX_MESSAGES, 0))
                         }

@@ -18,6 +18,7 @@ export interface IMessageBase {
     username: string,
     channel?: string,
     avatar: string,
+    localId: string,
     messageType: string,
     createdAt?: string,
     text: string
