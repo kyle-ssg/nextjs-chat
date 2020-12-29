@@ -1,6 +1,14 @@
 $size: 64px;
 .my-avatar {
+  cursor: pointer;
   width: $size;
   height: $size;
   border-radius: $size/2;
+}
+
+section {
+  outline: none !important;
+  > * {
+    outline: none;
+  }
 }

@@ -73,7 +73,6 @@ const Avatar: FunctionComponent<ComponentType> = ({isLoading,onChange, src}) => 
                     onRequestClose={()=>{
                         document.body.classList.add("ReactModal__Body--before-close")
                         setModalVisible(false)
-                        setFilePath(null)
                     }}
                     onAfterClose={()=>{
                         document.body.classList.remove("ReactModal__Body--before-close")
