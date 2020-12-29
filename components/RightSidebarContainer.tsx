@@ -18,7 +18,6 @@ const RightSidebarContainer: FunctionComponent<ComponentType> = ({}) => {
 
     return (
         <>
-
             <div className="panel">
                 {user? (
                     <div>

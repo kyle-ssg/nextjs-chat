@@ -3,8 +3,9 @@
     border-color: transparent !important;
     box-shadow: none !important;
     border-radius: $border-radius;
+    height: 44px;
+    border-width: 2px;
     &-primary {
-        height: 44px;
         background-color: $brand-primary;
         &:hover {
             background-color: darken($brand-primary,10);

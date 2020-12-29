@@ -22,11 +22,16 @@ const UserSummary: FunctionComponent<UserSummaryType> = ({user, active}) => {
         </div>
     )
 }
-
+let interval;
 const UserList: FunctionComponent<ComponentType> = ({}) => {
     const {getUsers, inactiveUsers, activeUsers} = useUserList();
     const [filter, setFilter] = useState<string>("")
     useEffect(()=>{
+        if (!interval) {
+            interval = setInterval(()=>{
+                getUsers().then(()=>{})
+            }, 10000)
+        }
         getUsers().then(()=>{
             sendHeartbeat()
         })

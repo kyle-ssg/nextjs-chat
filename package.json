@@ -27,6 +27,7 @@
     "rc-switch": "^3.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-dropzone": "^11.2.4",
     "react-image-crop": "^8.6.6",
     "react-modal": "^3.12.1",
     "sass": "^1.30.0"

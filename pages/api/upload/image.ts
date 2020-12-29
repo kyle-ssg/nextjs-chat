@@ -18,7 +18,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
             res.status(400).json({message:`This image has been detected as ${problem}, if you believe this is not correct please contact an administrator.`})
         } else {
             const result = await uploadPhoto(user.username,req.body.data);
-            await User.updateOne({ _id: user._id }, { $set: { avatar: result } })
+            await User.updateOne({ _id: user._id }, { $set: { avatar: result, updatedAt: new Date().toISOString() } })
             // @ts-ignore
             res.status(200).json(parseUser({
                 ...user,

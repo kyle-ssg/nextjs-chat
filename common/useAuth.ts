@@ -5,6 +5,8 @@ import Project from "./project";
 import {IUser} from "models";
 import {useGlobalState} from "./state";
 import AsyncStorage from "@callstack/async-storage";
+import sendHeartbeat from "./sendHeartbeat";
+import {getUsers} from "./useUserList";
 const useAuth = ()=>{
     const state = useGlobalState()
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -17,8 +19,10 @@ const useAuth = ()=>{
                     _data.setToken(res.token);
                     state.set((state)=>{
                         state.user = res
+                        AsyncStorage.setItem("user", JSON.stringify(res))
                         return state;
                     });
+                    getUsers()
                     setIsLoading(false);
                 })
                 .catch((e)=>{

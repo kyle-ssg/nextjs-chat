@@ -1,7 +1,7 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {IMessage, IUserBase, PagedResponse} from "models";
 import _data from "./_data";
-import {StateType, useGlobalState} from "./state";
+import {globalState, StateType, useGlobalState} from "./state";
 import Project from "./project";
 import uniqBy from 'lodash/uniqBy'
 const MAX_MESSAGES = 100;
@@ -12,25 +12,44 @@ type IChat = {
     activeUsers: StateType['users'],
     inactiveUsers: StateType['users'],
 }
-export default function useData(): IChat {
-    const state = useGlobalState();
-    const timestamp = useRef(null)
 
-    const getUsers = () => {
-       return  _data.get(timestamp.current ? `${Project.api}users/after/${timestamp.current}` : `/api/users`)
-            .then((users: PagedResponse<IUserBase>) => {
+const timestamp = React.createRef()
+
+export const getUsers  = () => {
+    const state = globalState;
+    return  _data.get(timestamp.current ? `${Project.api}users/after/${timestamp.current}` : `/api/users`)
+        .then((users: PagedResponse<IUserBase>) => {
+            if (users.data.length) {
                 state.set((draft)=>{
-                    draft.users = uniqBy((draft.users||[]).concat(users.data),"_id");
-                    timestamp.current = Date.now().valueOf();
+                    if (!draft.users) {
+                        draft.users = users.data;
+                    } else {
+                        users.data.map((user)=>{
+                            const index = draft.users.findIndex((existingUser)=>{
+                                return user._id === existingUser._id;
+                            })
+                            if (index === -1) {
+                                draft.users.push(user);
+                            } else {
+                                draft.users[index] = user;
+                            }
+                        })
+                    }
+                    if(timestamp) {
+                        timestamp.current = new Date().setMilliseconds(0).valueOf();
+                    }
                     return draft
                 })
-            })
-    }
+            }
 
+        })
+}
+export default function useData(): IChat {
+    const state = useGlobalState();
     return {
         users: state.get().users,
         activeUsers: state.get().activeUsers,
         inactiveUsers: state.get().inactiveUsers,
-        getUsers
+        getUsers: getUsers
     }
 }
