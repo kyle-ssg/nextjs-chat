@@ -9,7 +9,9 @@ import Project from "../../../../common/project";
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
     try {
-        if (Project.adminOnlyRooms.includes(`${req.query.channel}`) || Project.adminVoiceOnlyRooms.includes(`${req.query.channel.replace("voice-","")}`) ) {
+        if (Project.adminOnlyRooms.includes(`${req.query.channel}`) || Project.adminVoiceOnlyRooms
+            .includes(`${(`${req.query.channel}`)
+                .replace("voice-","")}`) ) {
             try {
                 const user: IUserBase = await verify(req.headers.authorization?.split(" ")[1]);
                 if (user?.role !== 'ADMIN') {
