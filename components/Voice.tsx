@@ -77,7 +77,6 @@ const Voice: FunctionComponent<ComponentType> = ({room}) => {
         client.on("user-published", async (user, mediaType) => {
             // Subscribe to a remote user.
             await client.subscribe(user, mediaType);
-            console.log("subscribe success", user);
 
             // If the subscribed track is video.
             if (mediaType === "video") {

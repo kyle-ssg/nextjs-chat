@@ -38,7 +38,6 @@ export default function sendHeartbeat() {
                     });
                     if (result) {
                         user.online = true
-                        console.log(result.activeRoom, result)
                         usersPerRoom[result.activeRoom] = usersPerRoom[result.activeRoom] || []
                         usersPerRoom[result.activeRoom].push(user);
                         activeUsers.push(user);
