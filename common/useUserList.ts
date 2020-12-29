@@ -7,7 +7,7 @@ import uniqBy from 'lodash/uniqBy'
 const MAX_MESSAGES = 100;
 
 type IChat = {
-    getUsers: () => Promise<IUserBase[]>,
+    getUsers: () => Promise<void>,
     users: StateType['users'],
     activeUsers: StateType['users'],
     inactiveUsers: StateType['users'],
