@@ -7,15 +7,17 @@ import uniqBy from 'lodash/uniqBy'
 const MAX_MESSAGES = 100;
 
 type IChat = {
-    getUsers: () => void,
+    getUsers: () => Promise<IUserBase[]>,
     users: StateType['users'],
+    activeUsers: StateType['users'],
+    inactiveUsers: StateType['users'],
 }
 export default function useData(): IChat {
     const state = useGlobalState();
     const timestamp = useRef(null)
 
     const getUsers = () => {
-        _data.get(timestamp.current ? `${Project.api}users/after/${timestamp.current}` : `/api/users`)
+       return  _data.get(timestamp.current ? `${Project.api}users/after/${timestamp.current}` : `/api/users`)
             .then((users: PagedResponse<IUserBase>) => {
                 state.set((draft)=>{
                     draft.users = uniqBy((draft.users||[]).concat(users.data),"_id");
@@ -27,6 +29,8 @@ export default function useData(): IChat {
 
     return {
         users: state.get().users,
+        activeUsers: state.get().activeUsers,
+        inactiveUsers: state.get().inactiveUsers,
         getUsers
     }
 }

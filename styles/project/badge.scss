@@ -1,0 +1,16 @@
+$size:16px;
+.badge {
+  font-size: $size - 6;
+  min-width: $size ;
+  height: $size ;
+  border-radius: $size/2;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  &-active {
+    background-color: transparent;
+    //color: $brand-primary;
+  }
+}

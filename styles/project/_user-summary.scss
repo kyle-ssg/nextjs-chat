@@ -1,0 +1,9 @@
+.user-summary {
+  opacity: .5;
+  &.admin {
+    color: $brand-primary;
+  }
+  &.active {
+    opacity: 1;
+  }
+}

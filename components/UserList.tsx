@@ -4,15 +4,17 @@ import {IUserBase} from "../models";
 import {DEFAULT_AVATAR} from "../common/constants"; // we need this to make JSX compile
 import cx from "classname";
 import safeEventParse from "../common/saveEventParse";
+import sendHeartbeat from "../common/sendHeartbeat";
 type ComponentType = {}
 
 type UserSummaryType = {
-    user:IUserBase
+    user:IUserBase,
+    active:boolean
 }
 
-const UserSummary: FunctionComponent<UserSummaryType> = ({user}) => {
+const UserSummary: FunctionComponent<UserSummaryType> = ({user, active}) => {
     return (
-        <div className={cx("flex-row user-summary mb-2",{admin:user.role==="ADMIN"})}>
+        <div className={cx("flex-row user-summary mb-2",{active,admin:user.role==="ADMIN"})}>
             <img className="avatar" src={user.avatar||DEFAULT_AVATAR}/>
             <div className="username ml-2">
                 {user.username}
@@ -22,15 +24,21 @@ const UserSummary: FunctionComponent<UserSummaryType> = ({user}) => {
 }
 
 const UserList: FunctionComponent<ComponentType> = ({}) => {
-    const {getUsers, users} = useUserList();
+    const {getUsers, inactiveUsers, activeUsers} = useUserList();
     const [filter, setFilter] = useState<string>("")
     useEffect(()=>{
-        getUsers()
+        getUsers().then(()=>{
+            sendHeartbeat()
+        })
     },[]);
     const search = filter.toLowerCase();
-    const filteredUsers = filter? users.filter((user)=>{
+    const filteredActiveUsers = filter? activeUsers.filter((user)=>{
        return  user.username.toLowerCase().includes(search)
-    }) : users
+    }) : activeUsers
+
+    const filteredInactiveUsers = filter? inactiveUsers.filter((user)=>{
+       return  user.username.toLowerCase().includes(search)
+    }) : inactiveUsers
 
     return (
         <>
@@ -39,7 +47,12 @@ const UserList: FunctionComponent<ComponentType> = ({}) => {
             </div>
             <div className="ml-2 user-list mt-2">
                 {
-                    filteredUsers?.map((user)=>(
+                    filteredActiveUsers?.map((user)=>(
+                        <UserSummary active key={user._id} user={user}/>
+                    ))
+                }
+                {
+                    filteredInactiveUsers?.map((user)=>(
                         <UserSummary key={user._id} user={user}/>
                     ))
                 }

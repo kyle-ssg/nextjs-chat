@@ -4,8 +4,10 @@ export interface IUserBase {
     avatar: string,
     bio: string,
     createdAt?: string,
+    lastActive?: string,
+    activeRoom?: string,
     _id?: string,
-    lastOnline: number,
+    online?: boolean,
     updatedAt?: string,
     token?: string,
     role: string

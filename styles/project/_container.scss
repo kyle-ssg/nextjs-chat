@@ -73,15 +73,14 @@ $radius: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    width: $sidemenu-width;
+    width: $rightmenu-width;
     background: $rightmenu-background;
     padding: 10px;
     display: flex;
     flex-direction: column;
   }
   &__side-menu {
-    width: $sidemenu-width;
-    min-width: 180px;
+    min-width: $sidemenu-width;
     background: $sidemenu-background;
     padding: 16px 0 16px 16px;
     overflow-y: auto;
@@ -96,7 +95,7 @@ $radius: 0;
       padding: 8px;
       flex-wrap: nowrap;
       border-radius: $border-radius-small 0 0 $border-radius-small;
-      span {
+      .room-name-text {
         display: inline-block;
         max-width: 130px;
         overflow: hidden;
@@ -127,16 +126,21 @@ $radius: 0;
         }
       }
     }
+  }
+}
 
-    label {
-      user-select: none;
-      text-transform: uppercase;
-      color: $title-color;
-      font-weight: 500;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
+label.sidebar-label {
+  user-select: none;
+  text-transform: uppercase;
+  color: $title-color;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
 
+body.dark {
+  label.sidebar-label {
+    color: $title-color-dark;
   }
 }
 
@@ -152,9 +156,6 @@ body.dark .page-container {
   }
   &__side-menu {
     box-shadow: $shadow-color-dark 1px 7px 4px 0px;
-    label {
-      color: $title-color-dark;
-    }
     background-color: $sidemenu-background-dark;
     .room-name {
       color: $label-color-dark;

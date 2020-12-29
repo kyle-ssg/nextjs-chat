@@ -7,11 +7,12 @@ import 'react-image-crop/lib/ReactCrop.scss';
 
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
-import RoomList from "../components/RoomList";
-import useData from "../common/useData";
-import { route } from "next/dist/next-server/server/router";
+import RoomList from "components/RoomList";
+import useData from "common/useData";
+import Project from "common/project";
+import Heartbeat from "../components/Hearbeat";
+import sendHeartbeat from "../common/sendHeartbeat";
 
-const TIMER = 5000;
 
 export default function MyApp({ Component, pageProps }) {
     const [isActive, setIsActive] = useState(false);
@@ -22,17 +23,17 @@ export default function MyApp({ Component, pageProps }) {
         getMessages,
     } = useData();
 
-
     const router = useRouter()
 
     useEffect(()=>{
         setRoom(router.query.room||"general")
+        sendHeartbeat();
     }, [router.query.room])
 
     useEffect(() => {
         setInterval(() => {
             getMessages()
-        }, TIMER)
+        }, Project.MESSAGE_TIMER)
     }, []);
 
     useEffect(()=>{
@@ -47,7 +48,7 @@ export default function MyApp({ Component, pageProps }) {
                         _data.setToken(userData.token);
                         state.user = userData
                         return state
-                    })
+                    });
                 } catch (e){}
             }
             setIsActive(true)
@@ -63,6 +64,7 @@ export default function MyApp({ Component, pageProps }) {
                 <RoomList room={room} setRoom={setRoom}/>
             </div>
             {isActive? <Component {...pageProps} /> : null}
+            <Heartbeat/>
         </div>
     )
 }
