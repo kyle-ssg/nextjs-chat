@@ -112,7 +112,7 @@ const Voice: FunctionComponent<ComponentType> = ({room}) => {
             const playerContainer = document.getElementById(`${user.uid}`);
             // Destroy the container.
             if(!playerContainer) {
-                debugger
+                return
             }
             playerContainer.remove();
         });
