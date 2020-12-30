@@ -1,7 +1,7 @@
 import AsyncStorage from "@callstack/async-storage";
 import React, {useState, useEffect} from "react"
 import { useRouter } from 'next/router'
-
+import cx from "classname";
 import '../styles/index.scss'
 import 'react-image-crop/lib/ReactCrop.scss';
 
@@ -13,10 +13,14 @@ import Project from "common/project";
 import Heartbeat from "../components/Hearbeat";
 import sendHeartbeat from "../common/sendHeartbeat";
 import Voice from "../components/Voice";
+import CloseIcon from "../components/icons/CloseIcon";
+import MenuIcon from "../components/icons/MenuIcon";
+import ChevronDownIcon from "../components/icons/ChevronDownIcon";
 
 
 export default function MyApp({ Component, pageProps }) {
     const [isActive, setIsActive] = useState(false);
+    const [menuActive, setMenuActive] = useState(false);
     const state = useGlobalState();
 
     const router = useRouter()
@@ -31,6 +35,11 @@ export default function MyApp({ Component, pageProps }) {
 
     useEffect(()=>{
         setRoom(router.query.room||"general")
+        if(menuActive) {
+            setMenuActive(!menuActive)
+            document.body.classList.toggle("menu-active")
+            document.body.classList.toggle("left-menu-active")
+        }
         sendHeartbeat();
     }, [router.query.room])
 
@@ -61,11 +70,28 @@ export default function MyApp({ Component, pageProps }) {
         })
     },[])
     const voiceRoom = state.get().voiceRoom;
+    const room = state.get().room || "general";
 
     return (
         <div className="page-container">
+            <div onClick={() => {
+                setMenuActive(!menuActive)
+                document.body.classList.toggle("menu-active")
+                document.body.classList.toggle("left-menu-active")
+            }} className={cx("menu-left flex-row hidden-desktop",{active:menuActive})}>
+                {menuActive ? (
+                    <CloseIcon/>
+                ): (
+                    <>
+                        <div className="mr-2">
+                            {room}
+                        </div>
+                        <ChevronDownIcon/>
+                    </>
+                )}
+            </div>
             <div className="page-container__sidebar"/>
-            <div className="page-container__side-menu">
+            <div className={cx({active:menuActive},"page-container__left-menu")}>
                 <RoomList leaveVoiceRoom={leaveVoiceRoom}/>
             </div>
             {isActive? <Component {...pageProps} /> : null}

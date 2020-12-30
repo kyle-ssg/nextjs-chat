@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import useData from "common/useData";
 import Input from "components/Input";
 import ChatContainer, {Message} from "components/ChatContainer";
@@ -7,6 +7,7 @@ import Project from "../common/project";
 import {DEFAULT_AVATAR} from "../common/constants";
 import useAuth from "../common/useAuth";
 import bot from "../common/bot";
+import MenuIcon from "../components/icons/MenuIcon";
 
 export default function Home() {
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -45,9 +46,7 @@ export default function Home() {
             </div>
 
         </div>
-        <div className="page-container__right-menu">
             <RightSidebarContainer/>
-        </div>
 
     </>
   )

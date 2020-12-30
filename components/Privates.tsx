@@ -14,7 +14,7 @@ const Privates: FunctionComponent<ComponentType> = ({}) => {
             {privates.map((user)=>{
                 const link = "private-"+user._id
                 return (
-                    <Link href={`/?room=${link}`}>
+                    <Link key={user._id} href={`/?room=${link}`}>
                         <div className={cx("flex-row room-name", {"room-name--active":room === link})}>
                             <span className="icon-container">
                                 <MessageIcon/>

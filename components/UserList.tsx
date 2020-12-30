@@ -86,13 +86,13 @@ const UserList: FunctionComponent<ComponentType> = ({}) => {
     return (
         <>
             <div className="input-container-default input-container-sm mx-2 mt-2">
-                <input onChange={(e)=>setFilter(safeEventParse(e))} placeholder="Search..." type="text"/>
+                <input onChange={(e)=>setFilter(safeEventParse(e))} placeholder="Search users..." type="text"/>
             </div>
 
             <ContextMenu style={{width:200, height:100}} id="same_unique_identifier">
                 <div>
                     <div className="text-center">
-                        <h4>{activeUser?.username}</h4>
+                        <h4>{activeUser && activeUser?.username}</h4>
                     </div>
                     <ContextMenuItem onClick={handleClick} data={{type:"SEND"}}>
                             <MenuItem icon={<MessageIcon/>} text="Send Message" />

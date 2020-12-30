@@ -11,7 +11,7 @@ export default async function uploadPhoto(prefix:string,base64:string):Promise<s
             metadata: {
                 contentType: 'image/jpeg',
             },
-            public: true,
+            public:true
         }))
             .on('error', function(err) {
                 console.log("Google cloud error", err)

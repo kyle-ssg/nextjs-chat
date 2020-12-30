@@ -14,7 +14,7 @@ export const Message: FunctionComponent<MessageContentType> = ({message,yourName
     return (
         <div key={message._id} className={cx({you: yourName === message.username}, "flex-row message")}>
             <div className="text-center">
-                <img className="message__avatar" src={message.avatar || DEFAULT_AVATAR}/>
+                <img className="message__avatar" src={message.avatar? message.avatar.replace("storage.cloud.google","storage.googleapis") : DEFAULT_AVATAR}/>
 
             </div>
             <div className="ml-2">
