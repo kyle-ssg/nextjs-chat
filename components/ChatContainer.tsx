@@ -12,7 +12,7 @@ type MessageContentType = { message: IMessageBase,yourName?:string }
 
 export const Message: FunctionComponent<MessageContentType> = ({message,yourName}) => {
     return (
-        <div key={message._id} className={cx({you: yourName === message.username}, "flex-row message")}>
+        <div key={message._id} className={cx({you: yourName === message.username}, "flex-row message no-wrap")}>
             <div className="text-center">
                 <img className="message__avatar" src={message.avatar? message.avatar.replace("storage.cloud.google","storage.googleapis") : DEFAULT_AVATAR}/>
             </div>
