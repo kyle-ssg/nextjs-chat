@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import cx from "classname";
 import '../styles/index.scss'
 import 'react-image-crop/lib/ReactCrop.scss';
-
+import Head from 'next/head'
 import { useGlobalState } from "common/state";
 import _data from "common/_data";
 import RoomList from "components/RoomList";
@@ -73,6 +73,11 @@ export default function MyApp({ Component, pageProps }) {
     const room = state.get().room || "general";
 
     return (
+        <>
+            <Head>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+            </Head>
         <div className="page-container">
             <div onClick={() => {
                 setMenuActive(!menuActive)
@@ -100,5 +105,6 @@ export default function MyApp({ Component, pageProps }) {
             )}
             <Heartbeat/>
         </div>
+            </>
     )
 }

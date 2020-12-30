@@ -340,6 +340,9 @@ body.dark .page-container {
 }
 
 @media only screen and (max-width: 800px) {
+  .page-container__sidebar {
+    display: none !important;
+  }
   .hidden-desktop {
     display: flex;
   }
@@ -409,7 +412,7 @@ body.dark .page-container {
     }
     .user-list-panel {
       max-width: 100%;
-      max-height: 65vh;
+      max-height: 50vh;
       height: 65vh;
       .user-list {
         max-height: calc(65vh);

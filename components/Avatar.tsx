@@ -61,7 +61,7 @@ const Avatar: FunctionComponent<ComponentType> = ({isLoading,onChange, src}) => 
                     <section>
                         <div {...getRootProps()}>
                             <input {...getInputProps()} />
-                            <img src={src} className="my-avatar"/>
+                            <img src={src.replace("storage.cloud.google","storage.googleapis")} className="my-avatar"/>
                         </div>
                     </section>
                 )}
