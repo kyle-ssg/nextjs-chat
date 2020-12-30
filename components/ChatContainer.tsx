@@ -77,7 +77,6 @@ const ChatContainer: FunctionComponent<ComponentType> = () => {
             {state.user?.role === "SUPER_ADMIN" &&(
                <AdminActions room={room}/>
             )}
-
         </div>
     )
 }

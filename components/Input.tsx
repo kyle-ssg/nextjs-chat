@@ -11,6 +11,9 @@ const Input: FunctionComponent<ComponentType> = ({onSubmit}) => {
     const [showLogin, setShowLogin] = useState<boolean>(false)
     const state = useGlobalState();
     const submit = ()=>{
+        if(!text){
+            return;
+        }
         const user = state.get().user;
         if(!user) {
             setShowLogin(true);
@@ -30,6 +33,10 @@ const Input: FunctionComponent<ComponentType> = ({onSubmit}) => {
                            onChange={(e)=>setText(e.target.value)}
                            type="text"
                     />
+
+                    <button onClick={submit} className="btn btn-sm btn-outline-primary">
+                        Send
+                    </button>
                 </div>
             </form>
             <LoginModal visible={showLogin} setVisible={setShowLogin} onComplete={submit}/>

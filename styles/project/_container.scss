@@ -66,6 +66,11 @@ $radius: 0;
         outline: none !important;
         color: $label-color;
       }
+      button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }
     }
   }
 
