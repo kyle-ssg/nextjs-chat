@@ -4,6 +4,7 @@ import _data from "./_data";
 import {globalState, StateType, useGlobalState} from "./state";
 import Project from "./project";
 import uniqBy from 'lodash/uniqBy'
+import {getPrivateMessages} from "./usePrivateMessages";
 const MAX_MESSAGES = 100;
 
 type IChat = {
@@ -39,6 +40,9 @@ export const getUsers  = () => {
                         // @ts-ignore
                         (timestamp.current) = new Date().setMilliseconds(0).valueOf();
                     }
+                    setTimeout(()=>{
+                        getPrivateMessages();
+                    },0)
                     return draft
                 })
             }

@@ -8,6 +8,7 @@ import Link from "next/link"
 import Switch from "rc-switch";
 import useAuth from "../common/useAuth";
 import {StateType, useGlobalState} from "../common/state";
+import Privates from "./Privates";
 type ComponentType = {
     leaveVoiceRoom: ()=>void
 }
@@ -104,9 +105,7 @@ const RoomList: FunctionComponent<ComponentType> = ({leaveVoiceRoom}) => {
             <label className="sidebar-label">
                 Personal
             </label>
-                <div className="mt-2">
-                    Soon
-                </div>
+                <Privates/>
                 <div className="darkmode">
                     <Switch
                         checkedChildren="DARK"

@@ -27,8 +27,12 @@ type MenuItemIype = {
 const MenuItem: FunctionComponent<MenuItemIype> = ({icon,text}) => {
     return (
         <div className="menu-item flex-row">
-            {icon}
-            {text}
+            <span className="icon-container mr-2">
+                {icon}
+            </span>
+            <span className="text">
+                {text}
+            </span>
         </div>
     )
 }

@@ -1,18 +1,32 @@
 
 .react-contextmenu {
-    min-width: 200px;
-    background-color: $sidemenu-background;
-    opacity: 0;
-    @include darkMode();
-    border-radius: $border-radius;
-    box-shadow: $shadow-color 0px 3px 6px 2px;
-    z-index: 1;
-    padding: 16px;
+  min-width: 200px;
+  background-color: $sidemenu-background;
+  opacity: 0;
+  @include darkMode();
+  border-radius: $border-radius;
+  box-shadow: $shadow-color 0px 3px 6px 2px;
+  z-index: 1;
+  padding: 16px;
 }
 
 body.dark {
-    .react-contextmenu {
-        box-shadow: $shadow-color-dark 0px 3px 6px 2px;
-        background-color: $sidemenu-background-dark;
-   }
+  .react-contextmenu {
+    box-shadow: $shadow-color-dark 0px 3px 6px 2px;
+    background-color: $sidemenu-background-dark;
+  }
+}
+
+.react-contextmenu-item {
+  @include darkMode();
+  height: 44px;
+  line-height: 44px;
+  background-color: rgba(0,0,0,.05);
+  cursor: pointer;
+  user-select: none;
+  padding-left: 8px;
+  border-radius: $border-radius;
+  &:hover {
+    background-color: rgba(0,0,0,.1);
+  }
 }

@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {getDB} from "server/connect";
-import {Message} from "server/schemas";
+import {Message, Private} from "server/schemas";
 import {pagedResponse} from "server/paged-response";
 import {verify} from "server/jwt-handler";
 import {IMessage, IMessageBase, IUserBase} from "models";
@@ -28,7 +28,23 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
             } else {
                 res.status(200).send({ok:1})
             }
-        })
+        });
+
+        if (channel.includes("private-")) {
+            console.log("ITS PRIVATE", channel.split("private-")[1], channel)
+            const [from,to] = getFromTo(user._id, `${req.query.channel}`.split("private-")[1] )
+            console.log(from,to)
+            await Private.findOne({
+                from,
+                to
+            },async (_, existingThread)=>{
+                if(!existingThread) {
+                    console.log("Creating new private", {from,to})
+                    await new Private({from,to}).save()
+                }
+            });
+        }
+
     } catch (e) {
         res.status(500).json({message:e?.message||e})
     }

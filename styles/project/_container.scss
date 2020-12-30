@@ -275,62 +275,6 @@ $radius: 0;
     display: flex;
     flex-direction: column;
   }
-  &__side-menu {
-    min-width: $sidemenu-width;
-    background: $sidemenu-background;
-    padding: 16px 0 16px 16px;
-    overflow-y: auto;
-    box-shadow: $shadow-color -1px 11px 20px 0px;
-    .room-name {
-      @include darkMode();
-      user-select: none;
-      font-weight: 500;
-      color: $label-color;
-      cursor: pointer;
-      line-height: 18px;
-      padding: 8px;
-      flex-wrap: nowrap;
-      border-radius: $border-radius-small 0 0 $border-radius-small;
-      .room-name-text {
-        display: inline-block;
-        max-width: 130px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .icon-container {
-        width: 18px;
-        height: 18px;
-        margin-right: 8px;
-
-        svg {
-          height: 17px;
-          width: 18px;
-
-          path {
-            fill: $label-color;
-          }
-        }
-      }
-      background-color: transparent;
-
-      &--active {
-        background-color: $label-background-active;
-        color: $label-color-active;
-
-        svg path {
-          fill: $label-color-active !important;
-        }
-      }
-
-      &-voice--active {
-        color: $brand-primary;
-        background-color: transparent;
-        svg path {
-          fill: $brand-primary !important;
-        }
-      }
-    }
-  }
 }
 
 label.sidebar-label {
