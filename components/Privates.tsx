@@ -1,26 +1,31 @@
 import React, {FunctionComponent} from 'react';
 import {useGlobalState} from "../common/state"; // we need this to make JSX compile
 import Link from "next/link";
+import cx from 'classname'
 import MessageIcon from "./icons/MessageIcon";
 type ComponentType = {}
 
 const Privates: FunctionComponent<ComponentType> = ({}) => {
     const state = useGlobalState();
+    const room = state.get().room
     const privates = state.get().privates;
     return privates?(
         <div className="private-list">
-            {privates.map((user)=>(
-                    <Link href={"/?room=private-"+user._id}>
-                        <div className="flex-row room-name">
+            {privates.map((user)=>{
+                const link = "private-"+user._id
+                return (
+                    <Link href={`/?room=${link}`}>
+                        <div className={cx("flex-row room-name", {"room-name--active":room === link})}>
                             <span className="icon-container">
-                            <MessageIcon/>
+                                <MessageIcon/>
                             </span>
                             <span className="username">
                                 {user.username}
                             </span>
                         </div>
                     </Link>
-            ))}
+                )
+            })}
         </div>
     ) : null
 }
