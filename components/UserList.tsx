@@ -40,7 +40,7 @@ const MenuItem: FunctionComponent<MenuItemIype> = ({icon,text}) => {
 
 const UserSummary: FunctionComponent<UserSummaryType> = ({user, onClick, active}) => {
     return (
-        <div onClick={()=>onClick(user)} className={cx("flex-row user-summary mb-2",{active,admin:user.role==="ADMIN"})}>
+        <div onClick={()=>onClick(user)} className={cx("flex-row no-wrap user-summary mb-2",{active,admin:user.role==="ADMIN"})}>
             <img className="avatar" src={user.avatar||DEFAULT_AVATAR}/>
             <div className="username ml-2">
                 {user.username}
