@@ -4,6 +4,7 @@ import _data from "./_data";
 import {useGlobalState} from "./state";
 import Project from "./project";
 import {GUID} from "./guid";
+import {getPrivateMessages} from "./usePrivateMessages";
 
 const MAX_MESSAGES = 100;
 
@@ -99,6 +100,7 @@ export default function useData(redirectHome?:()=>void): IChat {
         const currentChannel = `${room}`
         const currentMessages = state.get().messages[currentChannel];
         const lastMessage: IMessageBase|null = getLastRemoteMessage(currentMessages);
+        getPrivateMessages();
         _data.get(lastMessage ? `${Project.api}messages/${currentChannel}/after/${lastMessage._id}` : `/api/messages/${currentChannel}`)
             .then((messages: PagedResponse<IMessage>) => {
                 if (messages.data.length) {
