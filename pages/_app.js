@@ -18,6 +18,26 @@ import MenuIcon from "../components/icons/MenuIcon";
 import ChevronDownIcon from "../components/icons/ChevronDownIcon";
 
 
+if(typeof document !=='undefined') {
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+        // special hack to prevent zoom-to-tabs gesture in safari
+        document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gesturechange', function(e) {
+        e.preventDefault();
+        // special hack to prevent zoom-to-tabs gesture in safari
+        document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gestureend', function(e) {
+        e.preventDefault();
+        // special hack to prevent zoom-to-tabs gesture in safari
+        document.body.style.zoom = 0.99;
+    });
+}
+
 export default function MyApp({ Component, pageProps }) {
     const [isActive, setIsActive] = useState(false);
     const [menuActive, setMenuActive] = useState(false);
@@ -75,7 +95,8 @@ export default function MyApp({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                <meta name="HandheldFriendly" content="true" />
 
             </Head>
         <div className="page-container">
