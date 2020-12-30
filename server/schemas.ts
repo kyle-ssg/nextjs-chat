@@ -13,6 +13,7 @@ const UserSchema = new Schema({
     role: {type:String, default:"USER"},
     lastActive: { type: Date, default: Date.now },
     activeRoom: String,
+    activeVoiceRoom: String,
     avatar: String
 }, {
     timestamps: true

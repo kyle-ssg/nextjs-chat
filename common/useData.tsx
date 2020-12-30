@@ -10,6 +10,8 @@ const MAX_MESSAGES = 100;
 type IChat = {
     setRoom: (name: string) => void,
     sendMessage: (message: string) => void,
+    setVoiceRoom: (room: string) => void,
+    leaveVoiceRoom: () => void,
     room: string,
     getMessages: ()=> void;
 }
@@ -18,16 +20,35 @@ const findByLocalId = (messages:IMessageBase[], id:string) =>{
         return message.localId === id;
     })
 }
-export default function useData(): IChat {
+export default function useData(redirectHome?:()=>void): IChat {
     const state = useGlobalState();
     const setRoom = (name: string) => {
         if (state.get().room !== name) {
+            if(name.includes("voice-")) {
+                setVoiceRoom(name)
+            }
             state.set((newState)=>{
                 newState.room = name
                 return newState
             });
             getMessages()
         }
+    }
+    const setVoiceRoom = (name: string) => {
+        state.set((draft)=>{
+            draft.voiceRoom = name;
+            return draft
+        })
+    }
+    const leaveVoiceRoom = () => {
+        state.set((draft)=>{
+            if (draft.voiceRoom === draft.room) {
+                draft.room = "general"
+                redirectHome && redirectHome();
+            }
+            draft.voiceRoom = null;
+            return draft
+        })
     }
     const sendMessage = async (message: string) => {
         const text = message?.trim();
@@ -107,6 +128,8 @@ export default function useData(): IChat {
         setRoom,
         room: state.get().room,
         sendMessage,
+        setVoiceRoom,
+        leaveVoiceRoom,
         getMessages
     }
 }

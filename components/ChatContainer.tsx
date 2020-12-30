@@ -1,15 +1,11 @@
 import React, {FunctionComponent, useEffect, useRef} from "react";
 import {useGlobalState} from "common/state";
 import {DEFAULT_AVATAR} from "common/constants";
-import {IMessage, IMessageBase} from "models"; // we need this to make JSX compile
+import {IMessageBase} from "models"; // we need this to make JSX compile
 import cx from "classname"
-import Voice from "./Voice";
-import Project from "../common/project";
 import AdminActions from "./AdminActions";
 
-type ComponentType = {
-    room: string
-}
+type ComponentType = {}
 
 
 type MessageContentType = { message: IMessageBase,yourName?:string }
@@ -49,8 +45,9 @@ const MessageContent: FunctionComponent<MessageContentType> = ({message}) => {
 
 
 
-const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
+const ChatContainer: FunctionComponent<ComponentType> = () => {
     const state = useGlobalState().get();
+    const room = state.room;
     const messages = state.messages[room] || []
     const yourName = state.user?.username;
     const scrolled = useRef(false);
@@ -81,9 +78,7 @@ const ChatContainer: FunctionComponent<ComponentType> = ({room}) => {
             {state.user?.role === "SUPER_ADMIN" &&(
                <AdminActions room={room}/>
             )}
-            {room.startsWith("voice") && (
-                <Voice key={room} room={room}/>
-            )}
+
         </div>
     )
 }

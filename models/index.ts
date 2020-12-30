@@ -6,6 +6,7 @@ export interface IUserBase {
     createdAt?: string,
     lastActive?: string,
     activeRoom?: string,
+    activeVoiceRoom?: string,
     _id?: string,
     online?: boolean,
     updatedAt?: string,

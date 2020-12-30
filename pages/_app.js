@@ -12,18 +12,22 @@ import useData from "common/useData";
 import Project from "common/project";
 import Heartbeat from "../components/Hearbeat";
 import sendHeartbeat from "../common/sendHeartbeat";
+import Voice from "../components/Voice";
 
 
 export default function MyApp({ Component, pageProps }) {
     const [isActive, setIsActive] = useState(false);
     const state = useGlobalState();
-    const {
-        setRoom,
-        room,
-        getMessages,
-    } = useData();
 
     const router = useRouter()
+    const {
+        setRoom,
+        getMessages,
+        leaveVoiceRoom
+    } = useData(()=>{
+        router.replace("/")
+    });
+
 
     useEffect(()=>{
         setRoom(router.query.room||"general")
@@ -56,14 +60,18 @@ export default function MyApp({ Component, pageProps }) {
             setIsActive(true)
         })
     },[])
+    const voiceRoom = state.get().voiceRoom;
 
     return (
         <div className="page-container">
             <div className="page-container__sidebar"/>
             <div className="page-container__side-menu">
-                <RoomList room={room} setRoom={setRoom}/>
+                <RoomList leaveVoiceRoom={leaveVoiceRoom}/>
             </div>
             {isActive? <Component {...pageProps} /> : null}
+            {voiceRoom && (
+                <Voice key={voiceRoom} room={voiceRoom}/>
+            )}
             <Heartbeat/>
         </div>
     )

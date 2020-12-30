@@ -38,7 +38,7 @@ export default function Home() {
                     </div>
                 ) : (
                         <>
-                            <ChatContainer room={room}/>
+                            <ChatContainer/>
                             {!user?.role?.includes("ADMIN") && Project.readOnlyRooms.includes(room) ? null : <Input onSubmit={sendMessage}/> }
                         </>
                 )}

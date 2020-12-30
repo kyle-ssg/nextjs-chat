@@ -18,7 +18,9 @@ export default function sendHeartbeat() {
     if(!state.get().users){
         return
     }
-    _data.get(`${Project.api}heartbeat/${state.get().room || "general"}`)
+    const room = state.get().room || "general";
+        const voiceRoom = state.get().voiceRoom;
+    _data.get(voiceRoom ?  `${Project.api}heartbeat/${room}/${voiceRoom}` : `${Project.api}heartbeat/${room}`)
         .then((res:HeartBeatType[])=>{
             state.set((draft)=>{
                 draft.users = state.get().users.map((user)=>{
@@ -26,7 +28,8 @@ export default function sendHeartbeat() {
                     return {
                         ...user,
                         online:!!matchingResult,
-                        activeRoom: matchingResult?.activeRoom
+                        activeRoom: matchingResult?.activeRoom,
+                        activeVoiceRoom: matchingResult?.activeVoiceRoom
                     }
                 });
                 const activeUsers = [];
@@ -40,6 +43,10 @@ export default function sendHeartbeat() {
                         user.online = true
                         usersPerRoom[result.activeRoom] = usersPerRoom[result.activeRoom] || []
                         usersPerRoom[result.activeRoom].push(user);
+                        if(result.activeVoiceRoom) {
+                            usersPerRoom[result.activeVoiceRoom] = usersPerRoom[result.activeVoiceRoom] || []
+                            usersPerRoom[result.activeVoiceRoom].push(user);
+                        }
                         activeUsers.push(user);
                     } else {
                         inactiveUsers.push(user);

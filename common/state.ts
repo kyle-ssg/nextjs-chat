@@ -3,7 +3,8 @@ import {IMessage, IMessageBase, IUserBase} from "models";
 
 export type HeartBeatType = {
     _id:string,
-    activeRoom:string
+    activeRoom:string,
+    activeVoiceRoom:string,
 };
 
 export type StateType = {
@@ -15,6 +16,7 @@ export type StateType = {
     inactiveUsers?: IUserBase[],
     usersPerRoom?: Record<string, IUserBase[]>,
     room?: string
+    voiceRoom?:string
 }
 const state:StateType = {
     messages:{},
